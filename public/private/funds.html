@@ -2,23 +2,6 @@
 
 <html lang="en">
 <head>
-
-            {% raw %}<script>
-              const isFlask = window.location.protocol.startsWith("http") && window.location.pathname.includes("/static/");
-              const linkIcon = document.createElement("link");
-              linkIcon.rel = "icon";
-              linkIcon.type = "image/png";
-              linkIcon.sizes = "512x512";
-              linkIcon.href = isFlask ? "{{ url_for('static', filename='image/favicon.png') }}" : "static/image/favicon.png";
-              document.head.appendChild(linkIcon);
-
-              const appleIcon = document.createElement("link");
-              appleIcon.rel = "apple-touch-icon";
-              appleIcon.sizes = "512x512";
-              appleIcon.href = isFlask ? "{{ url_for('static', filename='image/favicon.png') }}" : "static/image/favicon.png";
-              document.head.appendChild(appleIcon);
-            </script>{% endraw %}
-            
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
             <style>
@@ -106,7 +89,7 @@
             </style>
             <title>funds</title><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Notebook</title>{% raw %}<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>{% endraw %}
+<title>Notebook</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7395,9 +7378,9 @@ a.anchor-link {
 }
 </style>
 <!-- Load mathjax -->
-{% raw %}<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>{% endraw %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
 <!-- MathJax configuration -->
-{% raw %}<script type="text/x-mathjax-config">
+<script type="text/x-mathjax-config">
     init_mathjax = function() {
         if (window.MathJax) {
         // MathJax loaded
@@ -7427,8 +7410,8 @@ a.anchor-link {
         }
     }
     init_mathjax();
-    </script>{% endraw %}
-<!-- End of mathjax configuration -->{% raw %}<script type="module">
+    </script>
+<!-- End of mathjax configuration --><script type="module">
   document.addEventListener("DOMContentLoaded", async () => {
     const diagrams = document.querySelectorAll(".jp-Mermaid > pre.mermaid");
     // do not load mermaidjs if not needed
@@ -7561,7 +7544,7 @@ a.anchor-link {
 
     void Promise.all([...diagrams].map(renderOneMarmaid));
   });
-</script>{% endraw %}
+</script>
 <style>
   .jp-Mermaid:not(.jp-RenderedMermaid) {
     display: none;
