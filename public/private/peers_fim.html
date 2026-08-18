@@ -118,6 +118,453 @@
             <title>peers_fim</title><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Notebook</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<!-- libmain-plot-custom-head -->
+<script>
+/* libmain-plot-custom-js — lookback / rebase / hover no browser (espelha myplot.py). */
+(function (root) {
+  "use strict";
+
+  function parseISO(s) {
+    var p = String(s).slice(0, 10).split("-");
+    return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2]));
+  }
+
+  function iso(d) {
+    return (
+      d.getUTCFullYear() +
+      "-" +
+      String(d.getUTCMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(d.getUTCDate()).padStart(2, "0")
+    );
+  }
+
+  function prevWeekday(d) {
+    var x = new Date(d.getTime());
+    do {
+      x.setUTCDate(x.getUTCDate() - 1);
+    } while (x.getUTCDay() === 0 || x.getUTCDay() === 6);
+    return x;
+  }
+
+  function addMonths(d, n) {
+    var x = new Date(d.getTime());
+    var day = x.getUTCDate();
+    x.setUTCDate(1);
+    x.setUTCMonth(x.getUTCMonth() + n);
+    var max = new Date(Date.UTC(x.getUTCFullYear(), x.getUTCMonth() + 1, 0)).getUTCDate();
+    x.setUTCDate(Math.min(day, max));
+    return x;
+  }
+
+  function addYears(d, n) {
+    return addMonths(d, n * 12);
+  }
+
+  function roundN(v, n) {
+    var f = Math.pow(10, n);
+    return Math.round(v * f) / f;
+  }
+
+  function parseLabel(label) {
+    return {
+      base: String(label).replace(" (M)", ""),
+      monthly: String(label).indexOf(" (M)") >= 0,
+    };
+  }
+
+  function periodStartIso(base, dates) {
+    if (base === "Max") return dates[0];
+    var end = parseISO(dates[dates.length - 1]);
+    var start;
+    if (base === "YTD") {
+      start = prevWeekday(new Date(Date.UTC(end.getUTCFullYear(), 0, 1)));
+    } else if (base === "MTD") {
+      start = prevWeekday(new Date(Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), 1)));
+    } else if (/^\d+M$/.test(base)) {
+      start = prevWeekday(addMonths(end, -parseInt(base, 10)));
+    } else if (/^\d+Y$/.test(base)) {
+      start = prevWeekday(addYears(end, -parseInt(base, 10)));
+    } else {
+      return dates[0];
+    }
+    return iso(start);
+  }
+
+  function sliceIndex(dates, startIso) {
+    var i = 0;
+    while (i < dates.length && dates[i] < startIso) i++;
+    return i;
+  }
+
+  function rebase(arr, ndigits) {
+    var first = null;
+    var i;
+    for (i = 0; i < arr.length; i++) {
+      if (arr[i] != null) {
+        first = arr[i];
+        break;
+      }
+    }
+    if (first == null || first === 0) return arr.slice();
+    var out = new Array(arr.length);
+    for (i = 0; i < arr.length; i++) {
+      out[i] = arr[i] == null ? null : roundN(arr[i] / first, ndigits);
+    }
+    return out;
+  }
+
+  function resampleMonth(dates, arr) {
+    var outD = [];
+    var outV = [];
+    var i;
+    for (i = 0; i < dates.length; i++) {
+      var lastOfMonth =
+        i === dates.length - 1 || dates[i + 1].slice(0, 7) !== dates[i].slice(0, 7);
+      if (lastOfMonth) {
+        outD.push(dates[i]);
+        outV.push(arr[i]);
+      }
+    }
+    return { dates: outD, values: outV };
+  }
+
+  function hoverTexts(dates, visibles, valuesByCol, colors, ndigits) {
+    var texts = new Array(dates.length);
+    var i, c, r;
+    for (i = 0; i < dates.length; i++) {
+      var rows = [];
+      for (c = 0; c < visibles.length; c++) {
+        var name = visibles[c];
+        var v = valuesByCol[name][i];
+        if (v == null) continue;
+        rows.push([name, v]);
+      }
+      rows.sort(function (a, b) {
+        return b[1] - a[1];
+      });
+      var parts = ["<b>" + dates[i] + "</b>"];
+      for (r = 0; r < rows.length; r++) {
+        parts.push(
+          "<span style='color:" +
+            colors[rows[r][0]] +
+            ";'>" +
+            rows[r][0] +
+            ": " +
+            Number(rows[r][1]).toFixed(ndigits) +
+            "</span>"
+        );
+      }
+      texts[i] = parts.join("<br>");
+    }
+    return texts;
+  }
+
+  function compute(meta, label) {
+    var parsed = parseLabel(label);
+    var dates = meta.dates;
+    var i0 = sliceIndex(dates, periodStartIso(parsed.base, dates));
+    var winDates = dates.slice(i0);
+    var nd = meta.roundTo || 4;
+    var valuesByCol = {};
+    var columns = meta.columns;
+    var c, name, sliced, rs, mDates;
+    for (c = 0; c < columns.length; c++) {
+      name = columns[c];
+      sliced = meta.series[name].slice(i0);
+      if (meta.ret) sliced = rebase(sliced, nd);
+      valuesByCol[name] = sliced;
+    }
+    if (parsed.monthly) {
+      mDates = null;
+      for (c = 0; c < columns.length; c++) {
+        name = columns[c];
+        rs = resampleMonth(winDates, valuesByCol[name]);
+        if (!mDates) mDates = rs.dates;
+        valuesByCol[name] = rs.values;
+      }
+      winDates = mDates;
+    }
+    return { dates: winDates, valuesByCol: valuesByCol, base: parsed.base };
+  }
+
+  function plotEl(gd) {
+    if (!gd) return null;
+    if (typeof gd === "string") return root.document.getElementById(gd);
+    if (gd.nodeType === 1) return gd;
+    return null;
+  }
+
+  function getPlotly() {
+    return root.Plotly || root._Plotly;
+  }
+
+  function getMeta(gd) {
+    if (gd._libmainMeta) return gd._libmainMeta;
+    var layout = gd._fullLayout || gd.layout || {};
+    return layout.meta;
+  }
+
+  function hoverTraceIndex(gd) {
+    var i;
+    for (i = 0; i < gd.data.length; i++) {
+      if (gd.data[i].name === "_hover") return i;
+    }
+    return gd.data.length - 1;
+  }
+
+  function defaultLineTraceIndex(gd) {
+    var i;
+    for (i = 0; i < gd.data.length; i++) {
+      if (gd.data[i].name === "Linha Base") return i;
+    }
+    return -1;
+  }
+
+  function lookbackLabel(update) {
+    if (!update || typeof update !== "object") return null;
+    if (update["meta.lookbackPeriod"]) return update["meta.lookbackPeriod"];
+    if (update.meta && update.meta.lookbackPeriod) return update.meta.lookbackPeriod;
+    return null;
+  }
+
+  function activePeriodLabel(gd, meta) {
+    var layout = gd._fullLayout || gd.layout || {};
+    var menus = layout.updatemenus || [];
+    var labels = meta.periods || [];
+    var m, b, menu, active;
+    for (m = 0; m < menus.length; m++) {
+      menu = menus[m];
+      if (!menu.buttons || !menu.buttons.length) continue;
+      for (b = 0; b < menu.buttons.length; b++) {
+        if (labels.indexOf(menu.buttons[b].label) >= 0) {
+          active = menu.active == null ? 0 : menu.active;
+          return menu.buttons[active] ? menu.buttons[active].label : null;
+        }
+      }
+    }
+    return null;
+  }
+
+  function applyPeriod(gd, label) {
+    var Plotly = getPlotly();
+    gd = plotEl(gd);
+    if (!Plotly || !gd || !gd.data || !gd.data.length) return;
+
+    var meta = getMeta(gd);
+    if (!meta || !meta.libmainLookback || !label) return;
+    if (label === gd._libmainPeriod) return;
+
+    var computed = compute(meta, label);
+    var columns = meta.columns;
+    var n = columns.length;
+    var hoverIdx = hoverTraceIndex(gd);
+    var xs = [];
+    var ys = [];
+    var texts = [];
+    var traces = [];
+    var i;
+
+    for (i = 0; i < n; i++) {
+      xs.push(computed.dates);
+      ys.push(computed.valuesByCol[columns[i]]);
+      texts.push(null);
+      traces.push(i);
+    }
+
+    var visibles = [];
+    for (i = 0; i < n; i++) {
+      if (gd.data[i] && gd.data[i].visible !== false && gd.data[i].name) {
+        visibles.push(gd.data[i].name);
+      }
+    }
+    if (!visibles.length) visibles = columns.slice();
+
+    var hoverText = hoverTexts(
+      computed.dates,
+      visibles,
+      computed.valuesByCol,
+      meta.colors,
+      meta.roundTo || 4
+    );
+
+    xs.push(computed.dates);
+    ys.push(new Array(computed.dates.length).fill(0));
+    texts.push(hoverText);
+    traces.push(hoverIdx);
+
+    Plotly.restyle(gd, { x: xs, y: ys, text: texts }, traces);
+
+    var lineIdx = defaultLineTraceIndex(gd);
+    if (lineIdx >= 0 && meta.hasDefaultLine) {
+      Plotly.restyle(
+        gd,
+        {
+          x: [[computed.dates[0], computed.dates[computed.dates.length - 1]]],
+          y: [[meta.defaultLine, meta.defaultLine]],
+        },
+        [lineIdx]
+      );
+    }
+
+    Plotly.relayout(gd, {
+      "xaxis.range": [computed.dates[0], computed.dates[computed.dates.length - 1]],
+      "xaxis.autorange": false,
+      "yaxis.autorange": true,
+      "yaxis.type":
+        computed.base === "MTD" ? "linear" : meta.logy ? "log" : "linear",
+    });
+
+    gd._libmainPeriod = label;
+  }
+
+  function onPeriodChange(gd, label) {
+    if (!label) return;
+    applyPeriod(gd, label);
+  }
+
+  function bindOne(gd) {
+    gd = plotEl(gd);
+    if (!gd || gd._libmainBound) return;
+    var meta = getMeta(gd);
+    if (!meta || !meta.libmainLookback) return;
+    if (!gd.data || !gd.data.length) return;
+
+    gd._libmainBound = true;
+    gd._libmainMeta = meta;
+    gd._libmainPeriod = meta.defaultPeriod || meta.lookbackPeriod;
+
+    gd.addEventListener("plotly_relayout", function (ev) {
+      var detail = (ev && ev.detail) || {};
+      var label = lookbackLabel(detail) || activePeriodLabel(gd, meta);
+      onPeriodChange(gd, label);
+    });
+
+    if (typeof gd.on === "function") {
+      gd.on("plotly_relayout", function (e) {
+        var label = lookbackLabel(e) || activePeriodLabel(gd, meta);
+        onPeriodChange(gd, label);
+      });
+    }
+  }
+
+  function bindAll() {
+    if (!root.document) return;
+    var plots = root.document.querySelectorAll(".js-plotly-plot");
+    var i;
+    for (i = 0; i < plots.length; i++) bindOne(plots[i]);
+  }
+
+  function afterPlot(gd) {
+    bindOne(gd);
+  }
+
+  function patchPlotly(Plotly) {
+    if (!Plotly) return Plotly;
+    root.Plotly = Plotly;
+    root._Plotly = Plotly;
+
+    if (!Plotly._libmainPatched) {
+      var origNewPlot = Plotly.newPlot;
+      Plotly.newPlot = function (gd, data, layout, config) {
+        var ret = origNewPlot.apply(this, arguments);
+        function done() {
+          afterPlot(gd);
+        }
+        if (ret && typeof ret.then === "function") ret.then(done);
+        else setTimeout(done, 0);
+        return ret;
+      };
+
+      var origRelayout = Plotly.relayout;
+      Plotly.relayout = function (gd, update) {
+        var label = lookbackLabel(update);
+        var ret = origRelayout.apply(this, arguments);
+        if (label) {
+          function run() {
+            applyPeriod(gd, label);
+          }
+          if (ret && typeof ret.then === "function") ret.then(run);
+          else setTimeout(run, 0);
+        }
+        return ret;
+      };
+
+      Plotly._libmainPatched = true;
+    }
+
+    bindAll();
+    return Plotly;
+  }
+
+  function hookRequire() {
+    if (!root.require || root.require._libmainHooked) return;
+    var orig = root.require;
+    function wrapped(deps, callback, errback, relName) {
+      var depList = deps;
+      if (typeof depList === "string") depList = [depList];
+      if (Array.isArray(depList) && depList.indexOf("plotly") >= 0 && typeof callback === "function") {
+        var userCb = callback;
+        callback = function () {
+          var Plotly = patchPlotly(arguments[0]);
+          return userCb.apply(this, arguments);
+        };
+      }
+      return orig.apply(this, arguments);
+    }
+    var k;
+    for (k in orig) {
+      if (Object.prototype.hasOwnProperty.call(orig, k)) wrapped[k] = orig[k];
+    }
+    wrapped._libmainHooked = true;
+    root.require = wrapped;
+  }
+
+  function boot() {
+    hookRequire();
+    if (getPlotly()) patchPlotly(getPlotly());
+    if (typeof root.require === "function") {
+      root.require(["plotly"], patchPlotly);
+    }
+    bindAll();
+    [100, 300, 800, 2000, 5000, 10000].forEach(function (ms) {
+      setTimeout(function () {
+        hookRequire();
+        if (getPlotly()) patchPlotly(getPlotly());
+        bindAll();
+      }, ms);
+    });
+  }
+
+  root.LibMainPlot = {
+    bindAll: bindAll,
+    bindOne: bindOne,
+    applyPeriod: applyPeriod,
+    patchPlotly: patchPlotly,
+    hookRequire: hookRequire,
+  };
+
+  hookRequire();
+  if (getPlotly()) patchPlotly(getPlotly());
+
+  if (root.document) {
+    if (root.document.readyState === "loading") {
+      root.document.addEventListener("DOMContentLoaded", boot);
+    } else {
+      boot();
+    }
+    root.document.addEventListener(
+      "plotly_afterplot",
+      function (ev) {
+        bindOne(ev.target);
+      },
+      true
+    );
+  }
+})(typeof window !== "undefined" ? window : this);
+
+</script>
+
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
