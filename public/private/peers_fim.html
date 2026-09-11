@@ -81,6 +81,30 @@
                     text-indent: 0 !important;
                 }
 
+                /* Sumário = mesma vertical dos outputs. O InputPrompt do markdown
+                   tem padding 5px e fica com 76px; o OutputPrompt tem 64px. */
+                .jp-MarkdownCell .jp-InputPrompt {
+                    width: 64px !important;
+                    min-width: 64px !important;
+                    max-width: 64px !important;
+                    padding: 0 !important;
+                    box-sizing: border-box !important;
+                }
+                .jp-MarkdownOutput {
+                    padding-left: 0 !important;
+                }
+                .jp-RenderedHTMLCommon > ul,
+                .jp-RenderedHTMLCommon > ol {
+                    margin-left: 0 !important;
+                    padding-left: 1.2em !important;
+                }
+                .jp-RenderedHTMLCommon ul ul,
+                .jp-RenderedHTMLCommon ol ul,
+                .jp-RenderedHTMLCommon ul ol,
+                .jp-RenderedHTMLCommon ol ol {
+                    padding-left: 1.75em !important;
+                }
+
                 /* Força alinhamento das tabelas à esquerda */
                 table {
                     margin-left: 0 !important;
@@ -111,21 +135,6 @@
                 .output_html {
                     margin-left: 0 !important;
                     padding-left: 0 !important;
-                }
-
-                /* Índice / âncoras: vermelho Vokin, não o azul do Jupyter */
-                .jp-RenderedHTMLCommon a,
-                .jp-MarkdownOutput a,
-                .text_cell_render a,
-                .markdown-cell a {
-                    color: #AA002D !important;
-                    text-decoration: none;
-                }
-                .jp-RenderedHTMLCommon a:hover,
-                .jp-MarkdownOutput a:hover,
-                .text_cell_render a:hover,
-                .markdown-cell a:hover {
-                    text-decoration: underline;
                 }
             </style>
             <title>peers_fim</title><meta charset="utf-8"/>
@@ -361,6 +370,33 @@
     }
   }
 
+  var MENU_BUTTON_PX = 34;
+  var MENU_GAP_PX = 8;
+
+  function stackUpdateMenus(gd) {
+    var Plotly = getPlotly();
+    gd = plotEl(gd);
+    if (!Plotly || !gd || gd._libmainStacking) return;
+    var fl = gd._fullLayout || gd.layout;
+    if (!fl || !fl.updatemenus || fl.updatemenus.length < 2) return;
+    var x0 = fl.updatemenus[0].x;
+    if (x0 == null || x0 < 0.8) return;
+    var h = fl.height || gd.clientHeight || 450;
+    var mt = (fl.margin && fl.margin.t) || 80;
+    var mb = (fl.margin && fl.margin.b) || 40;
+    var plotH = Math.max(h - mt - mb, 160);
+    var y2 = Math.max(1.0 - (MENU_BUTTON_PX + MENU_GAP_PX) / plotH, 0.55);
+    var cur = fl.updatemenus[1].y;
+    if (cur != null && Math.abs(cur - y2) < 0.004) return;
+    gd._libmainStacking = true;
+    var ret = Plotly.relayout(gd, { "updatemenus[1].y": y2 });
+    function clear() {
+      gd._libmainStacking = false;
+    }
+    if (ret && typeof ret.then === "function") ret.then(clear, clear);
+    else setTimeout(clear, 0);
+  }
+
   function cleanMenuLabel(s) {
     return String(s || "").replace(/[\u2007\u00a0\s]+$/g, "");
   }
@@ -502,12 +538,14 @@
     var i;
     for (i = 0; i < plots.length; i++) {
       equalizeUpdateMenus(plots[i]);
+      stackUpdateMenus(plots[i]);
       bindOne(plots[i]);
     }
   }
 
   function afterPlot(gd) {
     equalizeUpdateMenus(gd);
+    stackUpdateMenus(gd);
     bindOne(gd);
   }
 
@@ -609,6 +647,7 @@
       "plotly_afterplot",
       function (ev) {
         equalizeUpdateMenus(ev.target);
+        stackUpdateMenus(ev.target);
         bindOne(ev.target);
       },
       true
