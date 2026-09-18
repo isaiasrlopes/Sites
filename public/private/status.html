@@ -15,29 +15,4 @@
               appleIcon.href = isFlask ? "{{ url_for('static', filename='image/favicon.png') }}" : "static/image/favicon.png";
               document.head.appendChild(appleIcon);
             </script>
-            <meta charset='utf-8'></head><body style='font-family:sans-serif'><h1>17 OK · 1 falharam</h1><p>18/09/2026 08:23</p><ul><li style='color:green'>OK — Portfolio <span style='color:#666'>(08:04:02, 19.9MB)</span></li><li style='color:green'>OK — Brief D+0 <span style='color:#666'>(08:04:57, 30.7MB)</span></li><li style='color:green'>OK — Brief D+1 <span style='color:#666'>(08:05:54, 5.2MB)</span></li><li style='color:green'>OK — Institucional <span style='color:#666'>(08:07:16, 48.5MB)</span></li><li style='color:green'>OK — IPS <span style='color:#666'>(08:08:09, 42.7MB)</span></li><li style='color:green'>OK — Pitch <span style='color:#666'>(08:08:45, 13.0MB)</span></li><li style='color:green'>OK — Crypto <span style='color:#666'>(08:09:16, 7.3MB)</span></li><li style='color:green'>OK — Peers Fim <span style='color:#666'>(08:10:18, 3.9MB)</span></li><li style='color:green'>OK — Peers Cosmos <span style='color:#666'>(08:11:15, 5.0MB)</span></li><li style='color:green'>OK — Peers Fia <span style='color:#666'>(08:12:15, 2.7MB)</span></li><li style='color:green'>OK — Brazil Equity <span style='color:#666'>(08:15:31, 5.3MB)</span></li><li style='color:green'>OK — Factors Definitions <span style='color:#666'>(08:17:59, 17.2MB)</span></li><li style='color:green'>OK — Factors Validation <span style='color:#666'>(08:18:23, 45.2MB)</span></li><li style='color:green'>OK — Factors Restatement <span style='color:#666'>(08:19:26, 0.4MB)</span></li><li style='color:green'>OK — Fundo <span style='color:#666'>(08:20:20, 2.8MB)</span></li><li style='color:green'>OK — Temas <span style='color:#666'>(08:22:00, 9.9MB)</span></li><li style='color:green'>OK — Rascunho <span style='color:#666'>(08:23:04, 2.4MB)</span></li><li style='color:red'><b>FALHOU — Factors</b><pre style='white-space:pre-wrap;color:#444;font-size:12px'>FileNotFoundError: [Errno 2] No such file or directory: &#x27;/home/user/Dropbox (Pessoal)/Trabalho/gestao/project/factors/output/prod/2026-08-28/ls_factors_cotas&#x27;
-[32m--&gt; [39m[32m121[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mread_directory_items[39;49m[30;43m([39;49m
-[32m    122[39m [30;43m        [39;49m[30;43mpath[39;49m[30;43m=[39;49m[30;43mcotas_path[39;49m[30;43m,[39;49m
-[32m    123[39m [30;43m        [39;49m[30;43mfile_names[39;49m[30;43m=[39;49m[30;43m[[39;49m[30;43mf[39;49m[30;43m&quot;[39;49m[30;43;01m{[39;49;00m[30;43mx[39;49m[30;43;01m}[39;49;00m[30;43m cota[39;49m[30;43m&quot;[39;49m[30;43m [39;49m[30;43;01mfor[39;49;00m[30;43m [39;49m[30;43mx[39;49m[30;43m [39;49m[30;43;01min[39;49;00m[30;43m [39;49m[30;43mstrat_names[39;49m[…
-[32m    124[39m [30;43m    [39;49m[30;43m)[39;49m
-[32m    126[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_prices[39m[33m&#x27;[39m] = pd.concat([
-[32m    127[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m),
-[32m    128[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)], axis=[32m1[39m)
-[32m    130[39m [38;5;28;01mif[39;00m weights:
-[36mFile [39m[32m/home/user/LibMain/LibMain/_LibHandler/general/datareader.py:32[39m, in [36mDataReader.read_directory_items[39m[34m(self, path, file_names, **kwargs)[39m
-[32m     12[39m [38;5;250m[39m[33;03m&quot;&quot;&quot;[39;00m
-[32m     13[39m [33;03mReads the files specified in file_names list, given a set of kwargs, using pandas functions.[39;00m
-[32m     14[39m
-[32m   (...)[39m[32m     28[39m [33;03mDoesnt return anything, saves the data objects in the self.data dictionary[39;00m
-[32m     29[39m [33;03m&quot;&quot;&quot;[39;00m
-[32m     31[39m [38;5;66;03m#directory_files = self.read_directory_paths()[39;00m
-[32m---&gt; [39m[32m32[39m directory_files = [30;43mself[39;49m[30;43m.[39;49m[30;43mread_directory_paths[39;49m[30;43m([39;49m[30;43mpath[39;49m[30;43m=[39;49m[30;43mpath[39;49m[30;43m)[39;49m
-[32m     34[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(file_names, [38;5;28mtype[39m([38;5;28;01mNone[39;00m)):
-[32m     35[39m     [38;5;28;01mfor[39;00m file_name [38;5;129;01min[39;00m file_names:
-[36mFile [39m[32m/home/user/LibMain/LibMain/_LibHandler/general/datareader.py:77[39m, in [36mDataReader.read_directory_paths[39m[34m(self, path, relative)[39m
-[32m     74[39m file_paths = {}
-[32m     76[39m [38;5;28;01mif[39;00m relative:
-[32m---&gt; [39m[32m77[39m     [38;5;28;01mfor[39;00m file [38;5;129;01min[39;00m [30;43mlistdir[39;49m[30;43m([39;49m[30;43mpath[39;49m[30;43m)[39;49m:
-[32m     78[39m         [38;5;28;01mif[39;00m isfile(join(path, file)):
-[32m     79[39m             file_paths[file[:file.rfind([33m&quot;[39m[33m.[39m[33m&quot;[39m)]] = join(path, file)
-[31mFileNotFoundError[39m: [Errno 2] No such file or directory: &#x27;/home/user/Dropbox (Pessoal)/Trabalho/gestao/project/factors/output/prod/2026-08-28/ls_factors_cotas&#x27;</pre></li></ul></body></html>
+            <meta charset='utf-8'></head><body style='font-family:sans-serif'><h1>2 OK · 0 falharam</h1><p>18/09/2026 14:36</p><ul><li style='color:green'>OK — Portfolio <span style='color:#666'>(14:34:46, 19.9MB)</span></li><li style='color:green'>OK — Brief D+0 <span style='color:#666'>(14:36:52, 30.7MB)</span></li></ul></body></html>
