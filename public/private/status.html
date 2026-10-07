@@ -1,4 +1,329 @@
 <html><head>
 
             <link rel="icon" href="/static/image/vokin_mark.svg" type="image/svg+xml">
-            <meta charset='utf-8'></head><body style='font-family:sans-serif'><h1>2 OK · 0 falharam</h1><p>06/10/2026 16:29</p><ul><li style='color:green'>OK — Portfolio <span style='color:#666'>(16:28:05, 20.3MB)</span></li><li style='color:green'>OK — Brief D+0 <span style='color:#666'>(16:29:00, 29.9MB)</span></li></ul></body></html>
+            <meta charset='utf-8'></head><body style='font-family:sans-serif'><h1>5 OK · 13 falharam</h1><p>07/10/2026 08:13</p><ul><li style='color:green'>OK — Crypto <span style='color:#666'>(08:02:47, 7.5MB)</span></li><li style='color:green'>OK — Factors <span style='color:#666'>(08:09:26, 35.6MB)</span></li><li style='color:green'>OK — Factors Definitions <span style='color:#666'>(08:11:45, 17.4MB)</span></li><li style='color:green'>OK — Factors Validation <span style='color:#666'>(08:12:05, 31.9MB)</span></li><li style='color:green'>OK — Factors Restatement <span style='color:#666'>(08:13:06, 0.4MB)</span></li><li style='color:red'><b>FALHOU — Portfolio</b><pre style='white-space:pre-wrap;color:#444;font-size:12px'>KeyError: &#x27;volume_curto_momentum_av&#x27;
+[32m    570[39m [30;43m        [39;49m[30;43mverbose[39;49m[30;43m=[39;49m[30;43mverbose[39;49m[30;43m,[39;49m
+[32m    571[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    573[39m     [38;5;28;01mif[39;00m prices:
+[32m    574[39m         [38;5;28mself[39m.push_returns_straight(
+[32m    575[39m             prices=[38;5;28mself[39m.lsdata[[33m&#x27;[39m[33mfactors_prices[39m[33m&#x27;[39m], pushdata=[38;5;28;01mTrue[39;00m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibAnalytics/LsAnalytics/ls_analytics.py:131[39m, in [36mLsAnalytics.new_run_report_setup[39m[34m(self, setup, risk_free_name, prices, weights, stocks, indexes, fundaments, strats, use_suffix, verbose, name_default)[39m
+[32m    126[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_prices[39m[33m&#x27;[39m] = pd.concat([
+[32m    127[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m),
+[32m    128[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)], axis=[32m1[39m)
+[32m    130[39m [38;5;28;01mif[39;00m weights:
+[32m--&gt; [39m[32m131[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mread_directory_items[39;49m[30;43m([39;49m
+[32m    132[39m [30;43m        [39;49m[30;43mpath[39;49m[30;43m=[39;49m[30;43mpositions_path[39;49m[30;43m,[39;49m
+[32m    133[39m [30;43m        [39;49m[30;43mfile_names[39;49m[30;43m=[39;49m[30;43mstrat_names[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43m[[39;49m[30;43mf[39;49m[30;43m&quot;[39;49m[30;43;01m{[39;49;00m[30;43mx[39;49m[30;43;01m}[39;49;00m[30;43m pre_daily[39;49m[30;43m&quot;[39;49m[30;43m [39;49m[30;43;01mfor[39;49;00m[30;43m [39;49m[30;43mx[39;49m[30…
+[32m    134[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    136[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_daily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    137[39m         {x: [38;5;28mself[39m[x] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[32m    139[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_predaily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    140[39m         {[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibHandler/general/datareader.py:36[39m, in [36mDataReader.read_directory_items[39m[34m(self, path, file_names, **kwargs)[39m
+[32m     34[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(file_names, [38;5;28mtype[39m([38;5;28;01mNone[39;00m)):
+[32m     35[39m     [38;5;28;01mfor[39;00m file_name [38;5;129;01min[39;00m file_names:
+[32m---&gt; [39m[32m36[39m         [38;5;28mself[39m[file_name] = [38;5;28mself[39m.read_file([30;43mdirectory_files[39;49m[30;43m[[39;49m[30;43mfile_name[39;49m[30;43m][39;49m, **kwargs)
+[32m     37[39m [38;5;28;01melse[39;00m:
+[32m     38[39m     [38;5;28;01mfor[39;00m key, value [38;5;129;01min[39;00m directory_files.items():
+[31mKeyError[39m: &#x27;volume_curto_momentum_av&#x27;</pre></li><li style='color:red'><b>FALHOU — Brief D+0</b><pre style='white-space:pre-wrap;color:#444;font-size:12px'>KeyError: &#x27;volume_curto_momentum_av&#x27;
+[32m    570[39m [30;43m        [39;49m[30;43mverbose[39;49m[30;43m=[39;49m[30;43mverbose[39;49m[30;43m,[39;49m
+[32m    571[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    573[39m     [38;5;28;01mif[39;00m prices:
+[32m    574[39m         [38;5;28mself[39m.push_returns_straight(
+[32m    575[39m             prices=[38;5;28mself[39m.lsdata[[33m&#x27;[39m[33mfactors_prices[39m[33m&#x27;[39m], pushdata=[38;5;28;01mTrue[39;00m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibAnalytics/LsAnalytics/ls_analytics.py:131[39m, in [36mLsAnalytics.new_run_report_setup[39m[34m(self, setup, risk_free_name, prices, weights, stocks, indexes, fundaments, strats, use_suffix, verbose, name_default)[39m
+[32m    126[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_prices[39m[33m&#x27;[39m] = pd.concat([
+[32m    127[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m),
+[32m    128[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)], axis=[32m1[39m)
+[32m    130[39m [38;5;28;01mif[39;00m weights:
+[32m--&gt; [39m[32m131[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mread_directory_items[39;49m[30;43m([39;49m
+[32m    132[39m [30;43m        [39;49m[30;43mpath[39;49m[30;43m=[39;49m[30;43mpositions_path[39;49m[30;43m,[39;49m
+[32m    133[39m [30;43m        [39;49m[30;43mfile_names[39;49m[30;43m=[39;49m[30;43mstrat_names[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43m[[39;49m[30;43mf[39;49m[30;43m&quot;[39;49m[30;43;01m{[39;49;00m[30;43mx[39;49m[30;43;01m}[39;49;00m[30;43m pre_daily[39;49m[30;43m&quot;[39;49m[30;43m [39;49m[30;43;01mfor[39;49;00m[30;43m [39;49m[30;43mx[39;49m[30…
+[32m    134[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    136[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_daily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    137[39m         {x: [38;5;28mself[39m[x] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[32m    139[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_predaily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    140[39m         {[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibHandler/general/datareader.py:36[39m, in [36mDataReader.read_directory_items[39m[34m(self, path, file_names, **kwargs)[39m
+[32m     34[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(file_names, [38;5;28mtype[39m([38;5;28;01mNone[39;00m)):
+[32m     35[39m     [38;5;28;01mfor[39;00m file_name [38;5;129;01min[39;00m file_names:
+[32m---&gt; [39m[32m36[39m         [38;5;28mself[39m[file_name] = [38;5;28mself[39m.read_file([30;43mdirectory_files[39;49m[30;43m[[39;49m[30;43mfile_name[39;49m[30;43m][39;49m, **kwargs)
+[32m     37[39m [38;5;28;01melse[39;00m:
+[32m     38[39m     [38;5;28;01mfor[39;00m key, value [38;5;129;01min[39;00m directory_files.items():
+[31mKeyError[39m: &#x27;volume_curto_momentum_av&#x27;</pre></li><li style='color:red'><b>FALHOU — Brief D+1</b><pre style='white-space:pre-wrap;color:#444;font-size:12px'>KeyError: &#x27;volume_curto_momentum_av&#x27;
+[32m    570[39m [30;43m        [39;49m[30;43mverbose[39;49m[30;43m=[39;49m[30;43mverbose[39;49m[30;43m,[39;49m
+[32m    571[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    573[39m     [38;5;28;01mif[39;00m prices:
+[32m    574[39m         [38;5;28mself[39m.push_returns_straight(
+[32m    575[39m             prices=[38;5;28mself[39m.lsdata[[33m&#x27;[39m[33mfactors_prices[39m[33m&#x27;[39m], pushdata=[38;5;28;01mTrue[39;00m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibAnalytics/LsAnalytics/ls_analytics.py:131[39m, in [36mLsAnalytics.new_run_report_setup[39m[34m(self, setup, risk_free_name, prices, weights, stocks, indexes, fundaments, strats, use_suffix, verbose, name_default)[39m
+[32m    126[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_prices[39m[33m&#x27;[39m] = pd.concat([
+[32m    127[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m),
+[32m    128[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)], axis=[32m1[39m)
+[32m    130[39m [38;5;28;01mif[39;00m weights:
+[32m--&gt; [39m[32m131[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mread_directory_items[39;49m[30;43m([39;49m
+[32m    132[39m [30;43m        [39;49m[30;43mpath[39;49m[30;43m=[39;49m[30;43mpositions_path[39;49m[30;43m,[39;49m
+[32m    133[39m [30;43m        [39;49m[30;43mfile_names[39;49m[30;43m=[39;49m[30;43mstrat_names[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43m[[39;49m[30;43mf[39;49m[30;43m&quot;[39;49m[30;43;01m{[39;49;00m[30;43mx[39;49m[30;43;01m}[39;49;00m[30;43m pre_daily[39;49m[30;43m&quot;[39;49m[30;43m [39;49m[30;43;01mfor[39;49;00m[30;43m [39;49m[30;43mx[39;49m[30…
+[32m    134[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    136[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_daily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    137[39m         {x: [38;5;28mself[39m[x] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[32m    139[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_predaily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    140[39m         {[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibHandler/general/datareader.py:36[39m, in [36mDataReader.read_directory_items[39m[34m(self, path, file_names, **kwargs)[39m
+[32m     34[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(file_names, [38;5;28mtype[39m([38;5;28;01mNone[39;00m)):
+[32m     35[39m     [38;5;28;01mfor[39;00m file_name [38;5;129;01min[39;00m file_names:
+[32m---&gt; [39m[32m36[39m         [38;5;28mself[39m[file_name] = [38;5;28mself[39m.read_file([30;43mdirectory_files[39;49m[30;43m[[39;49m[30;43mfile_name[39;49m[30;43m][39;49m, **kwargs)
+[32m     37[39m [38;5;28;01melse[39;00m:
+[32m     38[39m     [38;5;28;01mfor[39;00m key, value [38;5;129;01min[39;00m directory_files.items():
+[31mKeyError[39m: &#x27;volume_curto_momentum_av&#x27;</pre></li><li style='color:red'><b>FALHOU — Institucional</b><pre style='white-space:pre-wrap;color:#444;font-size:12px'>KeyError: &#x27;volume_curto_momentum_av&#x27;
+[32m    570[39m [30;43m        [39;49m[30;43mverbose[39;49m[30;43m=[39;49m[30;43mverbose[39;49m[30;43m,[39;49m
+[32m    571[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    573[39m     [38;5;28;01mif[39;00m prices:
+[32m    574[39m         [38;5;28mself[39m.push_returns_straight(
+[32m    575[39m             prices=[38;5;28mself[39m.lsdata[[33m&#x27;[39m[33mfactors_prices[39m[33m&#x27;[39m], pushdata=[38;5;28;01mTrue[39;00m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibAnalytics/LsAnalytics/ls_analytics.py:131[39m, in [36mLsAnalytics.new_run_report_setup[39m[34m(self, setup, risk_free_name, prices, weights, stocks, indexes, fundaments, strats, use_suffix, verbose, name_default)[39m
+[32m    126[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_prices[39m[33m&#x27;[39m] = pd.concat([
+[32m    127[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m),
+[32m    128[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)], axis=[32m1[39m)
+[32m    130[39m [38;5;28;01mif[39;00m weights:
+[32m--&gt; [39m[32m131[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mread_directory_items[39;49m[30;43m([39;49m
+[32m    132[39m [30;43m        [39;49m[30;43mpath[39;49m[30;43m=[39;49m[30;43mpositions_path[39;49m[30;43m,[39;49m
+[32m    133[39m [30;43m        [39;49m[30;43mfile_names[39;49m[30;43m=[39;49m[30;43mstrat_names[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43m[[39;49m[30;43mf[39;49m[30;43m&quot;[39;49m[30;43;01m{[39;49;00m[30;43mx[39;49m[30;43;01m}[39;49;00m[30;43m pre_daily[39;49m[30;43m&quot;[39;49m[30;43m [39;49m[30;43;01mfor[39;49;00m[30;43m [39;49m[30;43mx[39;49m[30…
+[32m    134[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    136[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_daily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    137[39m         {x: [38;5;28mself[39m[x] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[32m    139[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_predaily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    140[39m         {[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibHandler/general/datareader.py:36[39m, in [36mDataReader.read_directory_items[39m[34m(self, path, file_names, **kwargs)[39m
+[32m     34[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(file_names, [38;5;28mtype[39m([38;5;28;01mNone[39;00m)):
+[32m     35[39m     [38;5;28;01mfor[39;00m file_name [38;5;129;01min[39;00m file_names:
+[32m---&gt; [39m[32m36[39m         [38;5;28mself[39m[file_name] = [38;5;28mself[39m.read_file([30;43mdirectory_files[39;49m[30;43m[[39;49m[30;43mfile_name[39;49m[30;43m][39;49m, **kwargs)
+[32m     37[39m [38;5;28;01melse[39;00m:
+[32m     38[39m     [38;5;28;01mfor[39;00m key, value [38;5;129;01min[39;00m directory_files.items():
+[31mKeyError[39m: &#x27;volume_curto_momentum_av&#x27;</pre></li><li style='color:red'><b>FALHOU — IPS</b><pre style='white-space:pre-wrap;color:#444;font-size:12px'>KeyError: &#x27;volume_curto_momentum_av&#x27;
+[32m    570[39m [30;43m        [39;49m[30;43mverbose[39;49m[30;43m=[39;49m[30;43mverbose[39;49m[30;43m,[39;49m
+[32m    571[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    573[39m     [38;5;28;01mif[39;00m prices:
+[32m    574[39m         [38;5;28mself[39m.push_returns_straight(
+[32m    575[39m             prices=[38;5;28mself[39m.lsdata[[33m&#x27;[39m[33mfactors_prices[39m[33m&#x27;[39m], pushdata=[38;5;28;01mTrue[39;00m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibAnalytics/LsAnalytics/ls_analytics.py:131[39m, in [36mLsAnalytics.new_run_report_setup[39m[34m(self, setup, risk_free_name, prices, weights, stocks, indexes, fundaments, strats, use_suffix, verbose, name_default)[39m
+[32m    126[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_prices[39m[33m&#x27;[39m] = pd.concat([
+[32m    127[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m),
+[32m    128[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)], axis=[32m1[39m)
+[32m    130[39m [38;5;28;01mif[39;00m weights:
+[32m--&gt; [39m[32m131[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mread_directory_items[39;49m[30;43m([39;49m
+[32m    132[39m [30;43m        [39;49m[30;43mpath[39;49m[30;43m=[39;49m[30;43mpositions_path[39;49m[30;43m,[39;49m
+[32m    133[39m [30;43m        [39;49m[30;43mfile_names[39;49m[30;43m=[39;49m[30;43mstrat_names[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43m[[39;49m[30;43mf[39;49m[30;43m&quot;[39;49m[30;43;01m{[39;49;00m[30;43mx[39;49m[30;43;01m}[39;49;00m[30;43m pre_daily[39;49m[30;43m&quot;[39;49m[30;43m [39;49m[30;43;01mfor[39;49;00m[30;43m [39;49m[30;43mx[39;49m[30…
+[32m    134[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    136[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_daily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    137[39m         {x: [38;5;28mself[39m[x] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[32m    139[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_predaily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    140[39m         {[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibHandler/general/datareader.py:36[39m, in [36mDataReader.read_directory_items[39m[34m(self, path, file_names, **kwargs)[39m
+[32m     34[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(file_names, [38;5;28mtype[39m([38;5;28;01mNone[39;00m)):
+[32m     35[39m     [38;5;28;01mfor[39;00m file_name [38;5;129;01min[39;00m file_names:
+[32m---&gt; [39m[32m36[39m         [38;5;28mself[39m[file_name] = [38;5;28mself[39m.read_file([30;43mdirectory_files[39;49m[30;43m[[39;49m[30;43mfile_name[39;49m[30;43m][39;49m, **kwargs)
+[32m     37[39m [38;5;28;01melse[39;00m:
+[32m     38[39m     [38;5;28;01mfor[39;00m key, value [38;5;129;01min[39;00m directory_files.items():
+[31mKeyError[39m: &#x27;volume_curto_momentum_av&#x27;</pre></li><li style='color:red'><b>FALHOU — Pitch</b><pre style='white-space:pre-wrap;color:#444;font-size:12px'>KeyError: &#x27;volume_curto_momentum_av&#x27;
+[32m    570[39m [30;43m        [39;49m[30;43mverbose[39;49m[30;43m=[39;49m[30;43mverbose[39;49m[30;43m,[39;49m
+[32m    571[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    573[39m     [38;5;28;01mif[39;00m prices:
+[32m    574[39m         [38;5;28mself[39m.push_returns_straight(
+[32m    575[39m             prices=[38;5;28mself[39m.lsdata[[33m&#x27;[39m[33mfactors_prices[39m[33m&#x27;[39m], pushdata=[38;5;28;01mTrue[39;00m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibAnalytics/LsAnalytics/ls_analytics.py:131[39m, in [36mLsAnalytics.new_run_report_setup[39m[34m(self, setup, risk_free_name, prices, weights, stocks, indexes, fundaments, strats, use_suffix, verbose, name_default)[39m
+[32m    126[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_prices[39m[33m&#x27;[39m] = pd.concat([
+[32m    127[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m),
+[32m    128[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)], axis=[32m1[39m)
+[32m    130[39m [38;5;28;01mif[39;00m weights:
+[32m--&gt; [39m[32m131[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mread_directory_items[39;49m[30;43m([39;49m
+[32m    132[39m [30;43m        [39;49m[30;43mpath[39;49m[30;43m=[39;49m[30;43mpositions_path[39;49m[30;43m,[39;49m
+[32m    133[39m [30;43m        [39;49m[30;43mfile_names[39;49m[30;43m=[39;49m[30;43mstrat_names[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43m[[39;49m[30;43mf[39;49m[30;43m&quot;[39;49m[30;43;01m{[39;49;00m[30;43mx[39;49m[30;43;01m}[39;49;00m[30;43m pre_daily[39;49m[30;43m&quot;[39;49m[30;43m [39;49m[30;43;01mfor[39;49;00m[30;43m [39;49m[30;43mx[39;49m[30…
+[32m    134[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    136[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_daily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    137[39m         {x: [38;5;28mself[39m[x] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[32m    139[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_predaily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    140[39m         {[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibHandler/general/datareader.py:36[39m, in [36mDataReader.read_directory_items[39m[34m(self, path, file_names, **kwargs)[39m
+[32m     34[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(file_names, [38;5;28mtype[39m([38;5;28;01mNone[39;00m)):
+[32m     35[39m     [38;5;28;01mfor[39;00m file_name [38;5;129;01min[39;00m file_names:
+[32m---&gt; [39m[32m36[39m         [38;5;28mself[39m[file_name] = [38;5;28mself[39m.read_file([30;43mdirectory_files[39;49m[30;43m[[39;49m[30;43mfile_name[39;49m[30;43m][39;49m, **kwargs)
+[32m     37[39m [38;5;28;01melse[39;00m:
+[32m     38[39m     [38;5;28;01mfor[39;00m key, value [38;5;129;01min[39;00m directory_files.items():
+[31mKeyError[39m: &#x27;volume_curto_momentum_av&#x27;</pre></li><li style='color:red'><b>FALHOU — Peers Fim</b><pre style='white-space:pre-wrap;color:#444;font-size:12px'>KeyError: &#x27;volume_curto_momentum_av&#x27;
+[32m    570[39m [30;43m        [39;49m[30;43mverbose[39;49m[30;43m=[39;49m[30;43mverbose[39;49m[30;43m,[39;49m
+[32m    571[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    573[39m     [38;5;28;01mif[39;00m prices:
+[32m    574[39m         [38;5;28mself[39m.push_returns_straight(
+[32m    575[39m             prices=[38;5;28mself[39m.lsdata[[33m&#x27;[39m[33mfactors_prices[39m[33m&#x27;[39m], pushdata=[38;5;28;01mTrue[39;00m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibAnalytics/LsAnalytics/ls_analytics.py:131[39m, in [36mLsAnalytics.new_run_report_setup[39m[34m(self, setup, risk_free_name, prices, weights, stocks, indexes, fundaments, strats, use_suffix, verbose, name_default)[39m
+[32m    126[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_prices[39m[33m&#x27;[39m] = pd.concat([
+[32m    127[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m),
+[32m    128[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)], axis=[32m1[39m)
+[32m    130[39m [38;5;28;01mif[39;00m weights:
+[32m--&gt; [39m[32m131[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mread_directory_items[39;49m[30;43m([39;49m
+[32m    132[39m [30;43m        [39;49m[30;43mpath[39;49m[30;43m=[39;49m[30;43mpositions_path[39;49m[30;43m,[39;49m
+[32m    133[39m [30;43m        [39;49m[30;43mfile_names[39;49m[30;43m=[39;49m[30;43mstrat_names[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43m[[39;49m[30;43mf[39;49m[30;43m&quot;[39;49m[30;43;01m{[39;49;00m[30;43mx[39;49m[30;43;01m}[39;49;00m[30;43m pre_daily[39;49m[30;43m&quot;[39;49m[30;43m [39;49m[30;43;01mfor[39;49;00m[30;43m [39;49m[30;43mx[39;49m[30…
+[32m    134[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    136[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_daily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    137[39m         {x: [38;5;28mself[39m[x] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[32m    139[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_predaily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    140[39m         {[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibHandler/general/datareader.py:36[39m, in [36mDataReader.read_directory_items[39m[34m(self, path, file_names, **kwargs)[39m
+[32m     34[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(file_names, [38;5;28mtype[39m([38;5;28;01mNone[39;00m)):
+[32m     35[39m     [38;5;28;01mfor[39;00m file_name [38;5;129;01min[39;00m file_names:
+[32m---&gt; [39m[32m36[39m         [38;5;28mself[39m[file_name] = [38;5;28mself[39m.read_file([30;43mdirectory_files[39;49m[30;43m[[39;49m[30;43mfile_name[39;49m[30;43m][39;49m, **kwargs)
+[32m     37[39m [38;5;28;01melse[39;00m:
+[32m     38[39m     [38;5;28;01mfor[39;00m key, value [38;5;129;01min[39;00m directory_files.items():
+[31mKeyError[39m: &#x27;volume_curto_momentum_av&#x27;</pre></li><li style='color:red'><b>FALHOU — Peers Cosmos</b><pre style='white-space:pre-wrap;color:#444;font-size:12px'>KeyError: &#x27;volume_curto_momentum_av&#x27;
+[32m    570[39m [30;43m        [39;49m[30;43mverbose[39;49m[30;43m=[39;49m[30;43mverbose[39;49m[30;43m,[39;49m
+[32m    571[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    573[39m     [38;5;28;01mif[39;00m prices:
+[32m    574[39m         [38;5;28mself[39m.push_returns_straight(
+[32m    575[39m             prices=[38;5;28mself[39m.lsdata[[33m&#x27;[39m[33mfactors_prices[39m[33m&#x27;[39m], pushdata=[38;5;28;01mTrue[39;00m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibAnalytics/LsAnalytics/ls_analytics.py:131[39m, in [36mLsAnalytics.new_run_report_setup[39m[34m(self, setup, risk_free_name, prices, weights, stocks, indexes, fundaments, strats, use_suffix, verbose, name_default)[39m
+[32m    126[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_prices[39m[33m&#x27;[39m] = pd.concat([
+[32m    127[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m),
+[32m    128[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)], axis=[32m1[39m)
+[32m    130[39m [38;5;28;01mif[39;00m weights:
+[32m--&gt; [39m[32m131[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mread_directory_items[39;49m[30;43m([39;49m
+[32m    132[39m [30;43m        [39;49m[30;43mpath[39;49m[30;43m=[39;49m[30;43mpositions_path[39;49m[30;43m,[39;49m
+[32m    133[39m [30;43m        [39;49m[30;43mfile_names[39;49m[30;43m=[39;49m[30;43mstrat_names[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43m[[39;49m[30;43mf[39;49m[30;43m&quot;[39;49m[30;43;01m{[39;49;00m[30;43mx[39;49m[30;43;01m}[39;49;00m[30;43m pre_daily[39;49m[30;43m&quot;[39;49m[30;43m [39;49m[30;43;01mfor[39;49;00m[30;43m [39;49m[30;43mx[39;49m[30…
+[32m    134[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    136[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_daily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    137[39m         {x: [38;5;28mself[39m[x] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[32m    139[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_predaily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    140[39m         {[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibHandler/general/datareader.py:36[39m, in [36mDataReader.read_directory_items[39m[34m(self, path, file_names, **kwargs)[39m
+[32m     34[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(file_names, [38;5;28mtype[39m([38;5;28;01mNone[39;00m)):
+[32m     35[39m     [38;5;28;01mfor[39;00m file_name [38;5;129;01min[39;00m file_names:
+[32m---&gt; [39m[32m36[39m         [38;5;28mself[39m[file_name] = [38;5;28mself[39m.read_file([30;43mdirectory_files[39;49m[30;43m[[39;49m[30;43mfile_name[39;49m[30;43m][39;49m, **kwargs)
+[32m     37[39m [38;5;28;01melse[39;00m:
+[32m     38[39m     [38;5;28;01mfor[39;00m key, value [38;5;129;01min[39;00m directory_files.items():
+[31mKeyError[39m: &#x27;volume_curto_momentum_av&#x27;</pre></li><li style='color:red'><b>FALHOU — Peers Fia</b><pre style='white-space:pre-wrap;color:#444;font-size:12px'>KeyError: &#x27;volume_curto_momentum_av&#x27;
+[32m    570[39m [30;43m        [39;49m[30;43mverbose[39;49m[30;43m=[39;49m[30;43mverbose[39;49m[30;43m,[39;49m
+[32m    571[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    573[39m     [38;5;28;01mif[39;00m prices:
+[32m    574[39m         [38;5;28mself[39m.push_returns_straight(
+[32m    575[39m             prices=[38;5;28mself[39m.lsdata[[33m&#x27;[39m[33mfactors_prices[39m[33m&#x27;[39m], pushdata=[38;5;28;01mTrue[39;00m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibAnalytics/LsAnalytics/ls_analytics.py:131[39m, in [36mLsAnalytics.new_run_report_setup[39m[34m(self, setup, risk_free_name, prices, weights, stocks, indexes, fundaments, strats, use_suffix, verbose, name_default)[39m
+[32m    126[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_prices[39m[33m&#x27;[39m] = pd.concat([
+[32m    127[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m),
+[32m    128[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)], axis=[32m1[39m)
+[32m    130[39m [38;5;28;01mif[39;00m weights:
+[32m--&gt; [39m[32m131[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mread_directory_items[39;49m[30;43m([39;49m
+[32m    132[39m [30;43m        [39;49m[30;43mpath[39;49m[30;43m=[39;49m[30;43mpositions_path[39;49m[30;43m,[39;49m
+[32m    133[39m [30;43m        [39;49m[30;43mfile_names[39;49m[30;43m=[39;49m[30;43mstrat_names[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43m[[39;49m[30;43mf[39;49m[30;43m&quot;[39;49m[30;43;01m{[39;49;00m[30;43mx[39;49m[30;43;01m}[39;49;00m[30;43m pre_daily[39;49m[30;43m&quot;[39;49m[30;43m [39;49m[30;43;01mfor[39;49;00m[30;43m [39;49m[30;43mx[39;49m[30…
+[32m    134[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    136[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_daily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    137[39m         {x: [38;5;28mself[39m[x] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[32m    139[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_predaily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    140[39m         {[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibHandler/general/datareader.py:36[39m, in [36mDataReader.read_directory_items[39m[34m(self, path, file_names, **kwargs)[39m
+[32m     34[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(file_names, [38;5;28mtype[39m([38;5;28;01mNone[39;00m)):
+[32m     35[39m     [38;5;28;01mfor[39;00m file_name [38;5;129;01min[39;00m file_names:
+[32m---&gt; [39m[32m36[39m         [38;5;28mself[39m[file_name] = [38;5;28mself[39m.read_file([30;43mdirectory_files[39;49m[30;43m[[39;49m[30;43mfile_name[39;49m[30;43m][39;49m, **kwargs)
+[32m     37[39m [38;5;28;01melse[39;00m:
+[32m     38[39m     [38;5;28;01mfor[39;00m key, value [38;5;129;01min[39;00m directory_files.items():
+[31mKeyError[39m: &#x27;volume_curto_momentum_av&#x27;</pre></li><li style='color:red'><b>FALHOU — Brazil Equity</b><pre style='white-space:pre-wrap;color:#444;font-size:12px'>KeyError: &#x27;volume_curto_momentum_av&#x27;
+[32m    570[39m [30;43m        [39;49m[30;43mverbose[39;49m[30;43m=[39;49m[30;43mverbose[39;49m[30;43m,[39;49m
+[32m    571[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    573[39m     [38;5;28;01mif[39;00m prices:
+[32m    574[39m         [38;5;28mself[39m.push_returns_straight(
+[32m    575[39m             prices=[38;5;28mself[39m.lsdata[[33m&#x27;[39m[33mfactors_prices[39m[33m&#x27;[39m], pushdata=[38;5;28;01mTrue[39;00m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibAnalytics/LsAnalytics/ls_analytics.py:131[39m, in [36mLsAnalytics.new_run_report_setup[39m[34m(self, setup, risk_free_name, prices, weights, stocks, indexes, fundaments, strats, use_suffix, verbose, name_default)[39m
+[32m    126[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_prices[39m[33m&#x27;[39m] = pd.concat([
+[32m    127[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m),
+[32m    128[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)], axis=[32m1[39m)
+[32m    130[39m [38;5;28;01mif[39;00m weights:
+[32m--&gt; [39m[32m131[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mread_directory_items[39;49m[30;43m([39;49m
+[32m    132[39m [30;43m        [39;49m[30;43mpath[39;49m[30;43m=[39;49m[30;43mpositions_path[39;49m[30;43m,[39;49m
+[32m    133[39m [30;43m        [39;49m[30;43mfile_names[39;49m[30;43m=[39;49m[30;43mstrat_names[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43m[[39;49m[30;43mf[39;49m[30;43m&quot;[39;49m[30;43;01m{[39;49;00m[30;43mx[39;49m[30;43;01m}[39;49;00m[30;43m pre_daily[39;49m[30;43m&quot;[39;49m[30;43m [39;49m[30;43;01mfor[39;49;00m[30;43m [39;49m[30;43mx[39;49m[30…
+[32m    134[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    136[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_daily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    137[39m         {x: [38;5;28mself[39m[x] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[32m    139[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_predaily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    140[39m         {[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibHandler/general/datareader.py:36[39m, in [36mDataReader.read_directory_items[39m[34m(self, path, file_names, **kwargs)[39m
+[32m     34[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(file_names, [38;5;28mtype[39m([38;5;28;01mNone[39;00m)):
+[32m     35[39m     [38;5;28;01mfor[39;00m file_name [38;5;129;01min[39;00m file_names:
+[32m---&gt; [39m[32m36[39m         [38;5;28mself[39m[file_name] = [38;5;28mself[39m.read_file([30;43mdirectory_files[39;49m[30;43m[[39;49m[30;43mfile_name[39;49m[30;43m][39;49m, **kwargs)
+[32m     37[39m [38;5;28;01melse[39;00m:
+[32m     38[39m     [38;5;28;01mfor[39;00m key, value [38;5;129;01min[39;00m directory_files.items():
+[31mKeyError[39m: &#x27;volume_curto_momentum_av&#x27;</pre></li><li style='color:red'><b>FALHOU — Fundo</b><pre style='white-space:pre-wrap;color:#444;font-size:12px'>KeyError: &#x27;volume_curto_momentum_av&#x27;
+[32m    570[39m [30;43m        [39;49m[30;43mverbose[39;49m[30;43m=[39;49m[30;43mverbose[39;49m[30;43m,[39;49m
+[32m    571[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    573[39m     [38;5;28;01mif[39;00m prices:
+[32m    574[39m         [38;5;28mself[39m.push_returns_straight(
+[32m    575[39m             prices=[38;5;28mself[39m.lsdata[[33m&#x27;[39m[33mfactors_prices[39m[33m&#x27;[39m], pushdata=[38;5;28;01mTrue[39;00m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibAnalytics/LsAnalytics/ls_analytics.py:131[39m, in [36mLsAnalytics.new_run_report_setup[39m[34m(self, setup, risk_free_name, prices, weights, stocks, indexes, fundaments, strats, use_suffix, verbose, name_default)[39m
+[32m    126[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_prices[39m[33m&#x27;[39m] = pd.concat([
+[32m    127[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m),
+[32m    128[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)], axis=[32m1[39m)
+[32m    130[39m [38;5;28;01mif[39;00m weights:
+[32m--&gt; [39m[32m131[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mread_directory_items[39;49m[30;43m([39;49m
+[32m    132[39m [30;43m        [39;49m[30;43mpath[39;49m[30;43m=[39;49m[30;43mpositions_path[39;49m[30;43m,[39;49m
+[32m    133[39m [30;43m        [39;49m[30;43mfile_names[39;49m[30;43m=[39;49m[30;43mstrat_names[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43m[[39;49m[30;43mf[39;49m[30;43m&quot;[39;49m[30;43;01m{[39;49;00m[30;43mx[39;49m[30;43;01m}[39;49;00m[30;43m pre_daily[39;49m[30;43m&quot;[39;49m[30;43m [39;49m[30;43;01mfor[39;49;00m[30;43m [39;49m[30;43mx[39;49m[30…
+[32m    134[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    136[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_daily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    137[39m         {x: [38;5;28mself[39m[x] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[32m    139[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_predaily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    140[39m         {[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibHandler/general/datareader.py:36[39m, in [36mDataReader.read_directory_items[39m[34m(self, path, file_names, **kwargs)[39m
+[32m     34[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(file_names, [38;5;28mtype[39m([38;5;28;01mNone[39;00m)):
+[32m     35[39m     [38;5;28;01mfor[39;00m file_name [38;5;129;01min[39;00m file_names:
+[32m---&gt; [39m[32m36[39m         [38;5;28mself[39m[file_name] = [38;5;28mself[39m.read_file([30;43mdirectory_files[39;49m[30;43m[[39;49m[30;43mfile_name[39;49m[30;43m][39;49m, **kwargs)
+[32m     37[39m [38;5;28;01melse[39;00m:
+[32m     38[39m     [38;5;28;01mfor[39;00m key, value [38;5;129;01min[39;00m directory_files.items():
+[31mKeyError[39m: &#x27;volume_curto_momentum_av&#x27;</pre></li><li style='color:red'><b>FALHOU — Temas</b><pre style='white-space:pre-wrap;color:#444;font-size:12px'>KeyError: &#x27;volume_curto_momentum_av&#x27;
+[32m    570[39m [30;43m        [39;49m[30;43mverbose[39;49m[30;43m=[39;49m[30;43mverbose[39;49m[30;43m,[39;49m
+[32m    571[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    573[39m     [38;5;28;01mif[39;00m prices:
+[32m    574[39m         [38;5;28mself[39m.push_returns_straight(
+[32m    575[39m             prices=[38;5;28mself[39m.lsdata[[33m&#x27;[39m[33mfactors_prices[39m[33m&#x27;[39m], pushdata=[38;5;28;01mTrue[39;00m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibAnalytics/LsAnalytics/ls_analytics.py:131[39m, in [36mLsAnalytics.new_run_report_setup[39m[34m(self, setup, risk_free_name, prices, weights, stocks, indexes, fundaments, strats, use_suffix, verbose, name_default)[39m
+[32m    126[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_prices[39m[33m&#x27;[39m] = pd.concat([
+[32m    127[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m),
+[32m    128[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)], axis=[32m1[39m)
+[32m    130[39m [38;5;28;01mif[39;00m weights:
+[32m--&gt; [39m[32m131[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mread_directory_items[39;49m[30;43m([39;49m
+[32m    132[39m [30;43m        [39;49m[30;43mpath[39;49m[30;43m=[39;49m[30;43mpositions_path[39;49m[30;43m,[39;49m
+[32m    133[39m [30;43m        [39;49m[30;43mfile_names[39;49m[30;43m=[39;49m[30;43mstrat_names[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43m[[39;49m[30;43mf[39;49m[30;43m&quot;[39;49m[30;43;01m{[39;49;00m[30;43mx[39;49m[30;43;01m}[39;49;00m[30;43m pre_daily[39;49m[30;43m&quot;[39;49m[30;43m [39;49m[30;43;01mfor[39;49;00m[30;43m [39;49m[30;43mx[39;49m[30…
+[32m    134[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    136[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_daily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    137[39m         {x: [38;5;28mself[39m[x] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[32m    139[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_predaily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    140[39m         {[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibHandler/general/datareader.py:36[39m, in [36mDataReader.read_directory_items[39m[34m(self, path, file_names, **kwargs)[39m
+[32m     34[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(file_names, [38;5;28mtype[39m([38;5;28;01mNone[39;00m)):
+[32m     35[39m     [38;5;28;01mfor[39;00m file_name [38;5;129;01min[39;00m file_names:
+[32m---&gt; [39m[32m36[39m         [38;5;28mself[39m[file_name] = [38;5;28mself[39m.read_file([30;43mdirectory_files[39;49m[30;43m[[39;49m[30;43mfile_name[39;49m[30;43m][39;49m, **kwargs)
+[32m     37[39m [38;5;28;01melse[39;00m:
+[32m     38[39m     [38;5;28;01mfor[39;00m key, value [38;5;129;01min[39;00m directory_files.items():
+[31mKeyError[39m: &#x27;volume_curto_momentum_av&#x27;</pre></li><li style='color:red'><b>FALHOU — Rascunho</b><pre style='white-space:pre-wrap;color:#444;font-size:12px'>KeyError: &#x27;volume_curto_momentum_av&#x27;
+[32m    570[39m [30;43m        [39;49m[30;43mverbose[39;49m[30;43m=[39;49m[30;43mverbose[39;49m[30;43m,[39;49m
+[32m    571[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    573[39m     [38;5;28;01mif[39;00m prices:
+[32m    574[39m         [38;5;28mself[39m.push_returns_straight(
+[32m    575[39m             prices=[38;5;28mself[39m.lsdata[[33m&#x27;[39m[33mfactors_prices[39m[33m&#x27;[39m], pushdata=[38;5;28;01mTrue[39;00m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibAnalytics/LsAnalytics/ls_analytics.py:131[39m, in [36mLsAnalytics.new_run_report_setup[39m[34m(self, setup, risk_free_name, prices, weights, stocks, indexes, fundaments, strats, use_suffix, verbose, name_default)[39m
+[32m    126[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_prices[39m[33m&#x27;[39m] = pd.concat([
+[32m    127[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m),
+[32m    128[39m         pd.concat({[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m_Wcost cota[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)], axis=[32m1[39m)
+[32m    130[39m [38;5;28;01mif[39;00m weights:
+[32m--&gt; [39m[32m131[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mread_directory_items[39;49m[30;43m([39;49m
+[32m    132[39m [30;43m        [39;49m[30;43mpath[39;49m[30;43m=[39;49m[30;43mpositions_path[39;49m[30;43m,[39;49m
+[32m    133[39m [30;43m        [39;49m[30;43mfile_names[39;49m[30;43m=[39;49m[30;43mstrat_names[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43m[[39;49m[30;43mf[39;49m[30;43m&quot;[39;49m[30;43;01m{[39;49;00m[30;43mx[39;49m[30;43;01m}[39;49;00m[30;43m pre_daily[39;49m[30;43m&quot;[39;49m[30;43m [39;49m[30;43;01mfor[39;49;00m[30;43m [39;49m[30;43mx[39;49m[30…
+[32m    134[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    136[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_daily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    137[39m         {x: [38;5;28mself[39m[x] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[32m    139[39m     [38;5;28mself[39m[[33m&#x27;[39m[33mtemp_predaily_weights[39m[33m&#x27;[39m] = pd.concat(
+[32m    140[39m         {[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m: [38;5;28mself[39m[[33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mx[38;5;132;01m}[39;00m[33m pre_daily[39m[33m&quot;[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m strat_names}, axis=[32m1[39m)
+[36mFile [39m[32m/home/user/LibMain/LibMain/_LibHandler/general/datareader.py:36[39m, in [36mDataReader.read_directory_items[39m[34m(self, path, file_names, **kwargs)[39m
+[32m     34[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(file_names, [38;5;28mtype[39m([38;5;28;01mNone[39;00m)):
+[32m     35[39m     [38;5;28;01mfor[39;00m file_name [38;5;129;01min[39;00m file_names:
+[32m---&gt; [39m[32m36[39m         [38;5;28mself[39m[file_name] = [38;5;28mself[39m.read_file([30;43mdirectory_files[39;49m[30;43m[[39;49m[30;43mfile_name[39;49m[30;43m][39;49m, **kwargs)
+[32m     37[39m [38;5;28;01melse[39;00m:
+[32m     38[39m     [38;5;28;01mfor[39;00m key, value [38;5;129;01min[39;00m directory_files.items():
+[31mKeyError[39m: &#x27;volume_curto_momentum_av&#x27;</pre></li></ul></body></html>
