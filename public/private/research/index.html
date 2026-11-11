@@ -60,15 +60,19 @@
               <span>A cauda comum vem da neutralização? Algum método ganha beta nos choques?</span></li>
             <li><a href="/research/candidatos-ls-2026-11">Candidatos de LS no Essencial</a>
               <span>Como fica o portfólio com o LS de núcleo beta_lambda fundido com outra versão?</span></li>
+            <li><a href="/research/fusao-ls-2026-11">Fusão do LS: vol + beta_lambda</a>
+              <span>Em que ponto do pipeline juntar os dois modelos?</span></li>
           </ol>
         </td>
         <td>
           Passar o LS a <b>50% vol (produção) + 50% beta_lambda</b>, em três etapas. O critério é estrutural, não o retorno de 2026: o LS da produção carrega β de 0,18 ao LO e ganha beta nos choques; a fusão corta a sobreposição com o LO pela metade e leva o Essencial a Sharpe 2,24 contra 2,13 (t 1,8), com o mesmo drawdown.
           A troca da perna vol pela <b>mqvol</b> (que pondera janelas) fica para depois das três etapas.
+          A fusão é feita no passo 10 (depois do discricionário, antes dos triggers), em todas as estratégias, com o peso da beta_lambda definido fora do framework.
         </td>
         <td>
           <ul class="plano">
             <li class="done"><b>10/11/2026</b> decisão registrada</li>
+            <li class="done"><b>10/11/2026</b> forma da fusão escolhida: no passo 10</li>
             <li class="next"><b>até 19/11/2026</b> produção pronta para rodar a beta_lambda e a fusão com peso</li>
             <li><b>26/11/2026</b> picking de nov: 1/3 da transição (LS com 1/6 de beta_lambda)</li>
             <li><b>29/12/2026</b> picking de dez: 2/3 (1/3 de beta_lambda)</li>
