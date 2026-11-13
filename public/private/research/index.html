@@ -66,10 +66,10 @@
               <span>Em que ponto do pipeline juntar modelos (dois ou mais)?</span></li>
           </ol>
           <p class="acomp"><a href="/research/ls-neutralizacao">Acompanhamento diário</a>
-            <span>vol, beta_lambda, mqvol e mvol (a vol nas janelas da mqvol, só acompanhamento): LS, LO, fatores e sobreposição, atualizado todo dia</span></p>
+            <span>vol, beta_lambda, mvol e mqvol (só acompanhamento): LS, LO, fatores e sobreposição, atualizado todo dia</span></p>
         </td>
         <td>
-          Passar o LS a <b>50% mqvol + 50% beta_lambda</b>. Nas três etapas da transição a primeira metade é a <b>vol</b> (produção); a troca da vol pela mqvol (que pondera janelas) vem depois, até 25/02/2027.
+          Passar o LS a <b>50% mvol (2m|12m) + 50% beta_lambda</b> (decisão de 13/11/2026; antes, mqvol). Nas três etapas da transição a primeira metade é a <b>vol</b> (produção); a troca da vol pela mvol vem depois, até 25/02/2027. Na mistura, quem tira a sobreposição com o LO é a janela de 12 meses, não o quantil.
           O critério é estrutural, não o retorno de 2026: o LS da produção tem correlação de 0,25 com o LO e ganha beta nos choques (−2,30% em média nas quedas do IBOV). No LS 50% vol + 50% beta_lambda, a correlação com o LO cai para 0,11 (−1,54% nos choques); no LS 50% mqvol + 50% beta_lambda, para 0,06 (−0,90%). A correlação do alfa com o beta do fundo vai de 0,12 para 0,06 e 0,04. O Essencial vai de Sharpe 2,13 para 2,24 e 2,26 (t 1,8 nos dois), com o mesmo drawdown (−10,2% contra −10,3% e −10,0%); no Lula Day, de −6,7% para −6,1% e −4,0%.
           A fusão é feita no passo 10 (depois do discricionário, antes dos triggers), em todas as estratégias, com o peso da beta_lambda definido fora do framework.
         </td>
@@ -82,7 +82,7 @@
             <li class="next"><b>26/11/2026</b> picking de nov: 1/3 da transição (LS com 1/6 de beta_lambda)</li>
             <li><b>29/12/2026</b> picking de dez: 2/3 (1/3 de beta_lambda)</li>
             <li><b>28/01/2027</b> picking de jan: transição completa (50% de beta_lambda)</li>
-            <li><b>até 25/02/2027</b> confirmar a troca da vol pela mqvol</li>
+            <li><b>até 25/02/2027</b> confirmar a troca da vol pela mvol</li>
             <li><b>jan/2028</b> revisão fora da amostra de 12 meses contra a produção antiga</li>
           </ul>
         </td>
