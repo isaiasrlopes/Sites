@@ -828,6 +828,99 @@
     }
   }
 
+  /* Touch: the finger scrubs the hover like a mouse; vertical swipe still scrolls the page. */
+
+  function plotArea(gd) {
+    var fl = gd._fullLayout;
+    var xa, ya;
+    if (!fl || !fl._plots || !fl._plots.xy) return null;
+    xa = fl.xaxis;
+    ya = fl.yaxis;
+    if (!xa || !ya || !xa._length || !ya._length) return null;
+    return { l: xa._offset, t: ya._offset, w: xa._length, h: ya._length };
+  }
+
+  function touchHover(gd, touch, clamp) {
+    var Plotly = getPlotly();
+    var a, r, x, y;
+    if (!Plotly || !Plotly.Fx || !touch) return false;
+    a = plotArea(gd);
+    if (!a) return false;
+    r = gd.getBoundingClientRect();
+    x = touch.clientX - r.left - a.l;
+    y = touch.clientY - r.top - a.t;
+    if (!clamp && (x < 0 || x > a.w || y < 0 || y > a.h)) return false;
+    x = Math.max(0, Math.min(a.w, x));
+    y = Math.max(0, Math.min(a.h, y));
+    try {
+      Plotly.Fx.hover(gd, { xpx: x, ypx: y }, "xy");
+    } catch (e) {
+      return false;
+    }
+    return true;
+  }
+
+  function bindTouch(gd) {
+    var opts = { passive: true, capture: true };
+    gd = plotEl(gd);
+    if (!gd || !gd.addEventListener) return;
+    if (gd._context) gd._context.doubleClick = false;
+    if (gd._libmainTouch || !plotArea(gd)) return;
+    gd._libmainTouch = true;
+    gd.style.touchAction = "pan-y";
+    gd.style.webkitTapHighlightColor = "transparent";
+
+    // Capture on the graph div: inside the plot area the touch never reaches
+    // Plotly's drag layer, which would set gd._dragging (blocks hover) and
+    // unhover on every move. Legend and menus sit outside and keep Plotly's handling.
+    gd.addEventListener(
+      "touchstart",
+      function (ev) {
+        if (gd._context) gd._context.doubleClick = false;
+        gd._libmainScrub = false;
+        if (ev.touches.length !== 1) return;
+        gd._dragging = false;
+        if (touchHover(gd, ev.touches[0], false)) {
+          gd._libmainScrub = true;
+          ev.stopPropagation();
+        }
+      },
+      opts
+    );
+    gd.addEventListener(
+      "touchmove",
+      function (ev) {
+        if (!gd._libmainScrub) return;
+        if (ev.touches.length !== 1) {
+          gd._libmainScrub = false;
+          return;
+        }
+        ev.stopPropagation();
+        touchHover(gd, ev.touches[0], true);
+      },
+      opts
+    );
+    gd.addEventListener(
+      "touchend",
+      function (ev) {
+        if (gd._libmainScrub) ev.stopPropagation();
+        gd._libmainScrub = false;
+      },
+      opts
+    );
+  }
+
+  function bindTouchAll() {
+    if (!root.document) return;
+    var plots = root.document.querySelectorAll(".js-plotly-plot");
+    var i;
+    for (i = 0; i < plots.length; i++) {
+      try {
+        bindTouch(plots[i]);
+      } catch (e) {}
+    }
+  }
+
   function bindHoverAll() {
     if (!root.document) return;
     var plots = root.document.querySelectorAll(".js-plotly-plot");
@@ -835,6 +928,7 @@
     for (i = 0; i < plots.length; i++) {
       try {
         bindHover(plots[i]);
+        bindTouch(plots[i]);
       } catch (e) {}
     }
   }
@@ -852,6 +946,7 @@
         }
         bindOne(plots[i]);
         bindHover(plots[i]);
+        bindTouch(plots[i]);
       } catch (e) {}
     }
   }
@@ -861,6 +956,7 @@
     stackUpdateMenus(gd);
     bindOne(gd);
     bindHover(gd);
+    bindTouch(gd);
   }
 
   function patchPlotly(Plotly) {
@@ -950,8 +1046,10 @@
   }
 
   root.LibMainPlot = {
-    rev: 5,
+    rev: 7,
     bindAll: bindAll,
+    bindTouch: bindTouch,
+    bindTouchAll: bindTouchAll,
     bindOne: bindOne,
     bindHover: bindHover,
     bindHoverAll: bindHoverAll,
@@ -981,6 +1079,7 @@
         }
         bindOne(ev.target);
         bindHover(ev.target);
+        bindTouch(ev.target);
       },
       true
     );
