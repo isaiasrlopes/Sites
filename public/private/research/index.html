@@ -66,11 +66,11 @@
               <span>Em que ponto do pipeline juntar modelos (dois ou mais)?</span></li>
           </ol>
           <p class="acomp"><a href="/research/ls-neutralizacao">Acompanhamento diário</a>
-            <span>vol, beta_lambda, mvol e mqvol (só acompanhamento): LS, LO, fatores e sobreposição, atualizado todo dia</span></p>
+            <span>vol, beta_lambda, mvol e mqvol (só acompanhamento): LS, LO, fatores, sobreposição e as misturas com o Essencial recalculado, atualizado todo dia</span></p>
         </td>
         <td>
           Passar o LS a <b>50% mvol (2m|12m) + 50% beta_lambda</b> (decisão de 13/11/2026; antes, mqvol). Nas três etapas da transição a primeira metade é a <b>vol</b> (produção); a troca da vol pela mvol vem depois, até 25/02/2027. Na mistura, quem tira a sobreposição com o LO é a janela de 12 meses, não o quantil.
-          O critério é estrutural, não o retorno de 2026: o LS da produção tem correlação de 0,25 com o LO e ganha beta nos choques (−2,30% em média nas quedas do IBOV). No LS 50% vol + 50% beta_lambda, a correlação com o LO cai para 0,11 (−1,54% nos choques); no LS 50% mqvol + 50% beta_lambda, para 0,06 (−0,90%). A correlação do alfa com o beta do fundo vai de 0,12 para 0,06 e 0,04. O Essencial vai de Sharpe 2,13 para 2,24 e 2,26 (t 1,8 nos dois), com o mesmo drawdown (−10,2% contra −10,3% e −10,0%); no Lula Day, de −6,7% para −6,1% e −4,0%.
+          O critério é a independência entre o LS (no alfa) e o LO (no beta), não o Sharpe (argumentos de 15/11/2026; Essencial com o LS e o LO de cada modelo, 2008 a 29/10/2026). <b>1.</b> O β do LS ao LO cai de 0,17 na vol para 0,03 na mvol + beta_lambda, com t de −11,7 (bootstrap em blocos de um mês) e menor em 19 de 19 anos; o ganho de Sharpe do Essencial (1,78 para 1,81) tem t de 0,4: o que se sustenta é a menor dependência, não o retorno. <b>2.</b> Nos choques do LO, o LS deixa de ir junto, para os dois lados: nos dias de queda forte, de −0,36% para −0,01% por dia; nos de alta forte, de +0,43% para +0,16%. No Lula Day, o Essencial vai de −6,7% para −5,0%, com o mesmo drawdown (−10,3% e −10,7%). <b>3.</b> Parte do Sharpe da vol vinha do LO: sem a parte do LS explicada pelo LO, o Sharpe do LS da vol cai de 1,48 para 1,35; o da mistura fica em 1,42. <b>4.</b> Não é trocar o modelo inteiro: metade segue na família da vol, com o que ela tem de bom. A janela de 12 meses ancora a vol no comportamento mais perene das ações e corta a sinergia de curto prazo da vol de 2 meses com o LO: a mvol sozinha já leva o β ao LO de 0,17 para 0,10.
           A fusão é feita no passo 10 (depois do discricionário, antes dos triggers), em todas as estratégias, com o peso da beta_lambda definido fora do framework.
         </td>
         <td>
