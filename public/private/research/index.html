@@ -95,11 +95,12 @@
           </ul>
           <p class="dec-h">Razões</p>
           <ul class="dec">
-            <li><b>β do LS ao LO:</b> de 0,17 para 0,03 (t −11,7; menor em 19 de 19 anos). Contra o LO 100 sem ajuste de vol, de 0,12 para 0,01.</li>
+            <li><b>β do LS ao LO:</b> de 0,17 para 0,03 (t −11,7). Contra o LO 100: de 0,12 para 0,01.</li>
             <li><b>Choques do LO:</b> o LS deixa de ir junto. Nas quedas fortes, de −0,36% para −0,01% ao dia; nas altas fortes, de +0,43% para +0,16%. Lula Day do Essencial: de −6,7% para −5,0%.</li>
             <li><b>Sharpe:</b> o drawdown não muda. O Sharpe do Essencial vai de 1,78 para 1,84, mas sem significância (t 1,3): a decisão, portanto, não é motivada por esse aumento, e sim pela maior independência entre L&amp;S e LO na dinâmica do Essencial.</li>
             <li><b>Por que mvol:</b> metade segue na família da vol. A janela de 12 meses corta a sinergia de curto prazo com o LO e sozinha já leva o β de 0,17 para 0,10. Métodos variantes como mqvol e mcqvol têm alta sobreposição com a mvol: nesse caso, a janela importa mais que o método. A janela de 12 meses torna o L&amp;S mais conservador e defensivo diante de mudanças de curto prazo nas volatilidades e correlações das ações.</li>
-            <li><b>Por que beta_lambda:</b> é o método que neutraliza o beta de mercado de forma direta: os pesos dão às duas pernas o mesmo beta, em vez de igualar notional ou vol. Sozinho, leva o β do LS ao LO 100 a zero (−0,00 desde 2006, contra 0,13 na vol e 0,08 na mvol). Ataca uma fonte de sobreposição diferente da que a mvol ataca (o beta estrutural das pernas, não a sinergia de curto prazo), por isso os dois se somam na mistura. A alternativa com a mesma ideia, o double sort por beta (beta_ds), tem correlação de 0,95 com a beta_lambda e, desde 2010, Sharpe menor (1,48 contra 1,59) e drawdown maior (−15,6% contra −11,1%); fica só no monitoramento.</li>
+            <li><b>Por que beta_lambda:</b> é notional neutral sem ficar estruturalmente vendido em bolsa, como o notional neutral tradicional. Mexe menos nos fatores do que o double sort por beta (beta_ds), que desde 2010 tem Sharpe menor (1,48 contra 1,59) e drawdown maior (−15,6% contra −11,1%). É também um hedge para um black swan: a neutralização por risco pode ficar net long; a beta_lambda, notional neutral por definição, não corre esse risco.</li>
+            <li><b>Por que a fusão:</b> mvol e beta_lambda têm prós e contras que se compensam. Juntas, deixam a correlação e o β do LS com o IBOV e com o LO mais equilibrados.</li>
           </ul>
           <p class="dec-h">Como</p>
           <ul class="dec">
