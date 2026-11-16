@@ -52,6 +52,11 @@
   ul.plano li.done::before { background: var(--done); }
   ul.plano li.next::before { background: var(--next); }
   ul.plano b { white-space: nowrap; }
+  details.tl summary { display: block; list-style: none; cursor: pointer; }
+  details.tl summary::-webkit-details-marker { display: none; }
+  details.tl:not([open]) ul.plano li:not(.next) { display: none; }
+  details.tl summary::after { content: "linha completa ▸"; display: block; margin: 4px 0 0 22px; color: var(--muted); font-size: 12px; }
+  details.tl[open] summary::after { content: "recolher ▴"; }
   .legenda { margin-top: 18px; color: var(--muted); font-size: 12px; }
   .legenda i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin: 0 4px 0 12px; vertical-align: middle; }
   @media (max-width: 760px) {
@@ -93,11 +98,13 @@
                 <li>Em que ponto do pipeline juntar modelos?</li>
               </ul></details></li>
           </ol>
-          <div class="acomp"><a href="/research/ls-neutralizacao">Monitoramento Live</a>
-            <ul class="perg">
-              <li>vol, mvol, mqvol</li>
-              <li>beta_lambda, beta_ds</li>
-            </ul></div>
+          <div class="acomp"><ol class="pesq" start="4">
+            <li><a href="/research/ls-neutralizacao">Monitoramento Live</a>
+              <ul class="perg">
+                <li>vol, mvol, mqvol</li>
+                <li>beta_lambda, beta_ds</li>
+              </ul></li>
+          </ol></div>
         </td>
         <td>
           <p class="dec-h dec-first">Decisão</p>
@@ -117,6 +124,7 @@
           </ul></details>
         </td>
         <td>
+          <details class="tl"><summary>
           <ul class="plano">
             <li class="done"><b>05/10/26</b> início</li>
             <li class="done"><b>13/11/26</b> decisão registrada</li>
@@ -125,6 +133,7 @@
             <li><b>28/01/27</b> picking de jan: transição completa (50% de beta_lambda)</li>
             <li><b>até 25/02/27</b> a metade da vol passa para a mvol</li>
           </ul>
+          </summary></details>
         </td>
       </tr>
     </tbody>
