@@ -17,7 +17,8 @@
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
   th { text-align: left; font-weight: 600; color: var(--muted); border-bottom: 2px solid var(--line); padding: 8px 10px; }
   td { vertical-align: top; border-bottom: 1px solid var(--line); padding: 14px 10px; }
-  td.tema { font-weight: 600; width: 14%; }
+  td.tema { font-weight: 600; }
+  col.c-tema { width: 13%; } col.c-pesq { width: 25%; } col.c-dec { width: 43%; } col.c-time { width: 19%; }
   td.tema span { display: block; font-weight: 400; color: var(--muted); font-size: 12px; margin-top: 2px; }
   ol.pesq { margin: 0; padding-left: 18px; }
   ol.pesq li { margin-bottom: 8px; }
@@ -25,6 +26,11 @@
   div.acomp { margin: 10px 0 0; padding-top: 10px; border-top: 1px solid var(--line); }
   ul.perg { margin: 2px 0 0; padding-left: 16px; color: var(--muted); font-size: 12px; }
   ol.pesq ul.perg li { margin-bottom: 0; }
+  details.pq summary { list-style: none; cursor: pointer; }
+  details.pq summary::-webkit-details-marker { display: none; }
+  details.pq summary::after { content: "▸"; display: inline-block; margin-left: 6px; color: var(--muted); font-size: 11px;
+                               transition: transform .15s; }
+  details.pq[open] summary::after { transform: rotate(90deg); }
   a { color: var(--accent); font-weight: 600; text-decoration: none; }
   a:hover { text-decoration: underline; }
   p.dec-lead { margin: 0 0 4px; }
@@ -57,6 +63,7 @@
   <h1>Pesquisas</h1>
   <p class="sub">Uma linha por tema. As pesquisas de cada tema estão em ordem: cada uma parte da conclusão da anterior. O relatório de cada pesquisa fica congelado na data em que foi feito; a decisão e a timeline ficam aqui para serem acompanhados e não dependerem do retorno de curto prazo.</p>
   <table>
+    <colgroup><col class="c-tema"><col class="c-pesq"><col class="c-dec"><col class="c-time"></colgroup>
     <thead>
       <tr><th>Tema</th><th>Pesquisas</th><th>Decisão</th><th>Timeline</th></tr>
     </thead>
@@ -65,22 +72,22 @@
         <td class="tema">L&amp;S Neutralização<span>desde 10/2026</span></td>
         <td>
           <ol class="pesq">
-            <li><a href="/research/neutralizacao-2026-11">Neutralização: Impactos nos Choques de Mercado</a>
+            <li><details class="pq"><summary><a href="/research/neutralizacao-2026-11">Neutralização: Impactos nos Choques de Mercado</a></summary>
               <ul class="perg">
                 <li>A cauda comum vem da neutralização?</li>
                 <li>Algum método ganha beta nos choques?</li>
-              </ul></li>
-            <li><a href="/research/candidatos-ls-2026-11">Alocação de Portfólio</a>
+              </ul></details></li>
+            <li><details class="pq"><summary><a href="/research/candidatos-ls-2026-11">Alocação de Portfólio</a></summary>
               <ul class="perg">
                 <li>Como fica o Essencial com a versão mvol + beta_lambda?</li>
                 <li>LO e LS tornam-se mais independentes?</li>
-              </ul></li>
-            <li><a href="/research/fusao-ls-2026-11">Fusões no Pipeline</a>
+              </ul></details></li>
+            <li><details class="pq"><summary><a href="/research/fusao-ls-2026-11">Fusões no Pipeline</a></summary>
               <ul class="perg">
                 <li>Em que ponto do pipeline juntar modelos?</li>
-              </ul></li>
+              </ul></details></li>
           </ol>
-          <div class="acomp"><a href="/research/ls-neutralizacao">Monitoramento live</a>
+          <div class="acomp"><a href="/research/ls-neutralizacao">Monitoramento Live</a>
             <ul class="perg">
               <li>vol, mvol, mqvol</li>
               <li>beta_lambda, beta_ds</li>
