@@ -26,10 +26,11 @@
   p.acomp span { display: block; color: var(--muted); font-size: 12px; }
   a { color: var(--accent); font-weight: 600; text-decoration: none; }
   a:hover { text-decoration: underline; }
-  p.dec-lead { margin: 0 0 10px; font-size: 15px; }
+  p.dec-lead { margin: 0 0 4px; }
   p.dec-h { margin: 12px 0 4px; font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
   ul.dec { margin: 0; padding-left: 18px; }
   ul.dec li { margin-bottom: 6px; }
+  ul.dec + ul.dec { margin-top: 14px; }
   p.dec-fonte { margin: 10px 0 0; font-size: 12px; color: var(--muted); }
   ul.plano { list-style: none; margin: 0; padding: 0; }
   ul.plano li { padding: 3px 0 3px 22px; position: relative; }
@@ -66,7 +67,7 @@
             <li><a href="/research/neutralizacao-2026-11">Neutralização: Impactos nos Choques de Mercado</a>
               <span>A cauda comum vem da neutralização? Algum método ganha beta nos choques?</span></li>
             <li><a href="/research/candidatos-ls-2026-11">Alocação de Portfólio</a>
-              <span>Como fica o Essencial com a versão ls mvol (2m|12m) + ls beta_lambda versus a composição anterior de ls vol? Portfólio melhora? LO e LS tornam-se mais independentes?</span></li>
+              <span>Como fica o Essencial com a versão ls mvol + ls beta_lambda versus a composição anterior de ls vol? Portfólio melhora? LO e LS tornam-se mais independentes?</span></li>
             <li><a href="/research/fusao-ls-2026-11">Fusões no Pipeline</a>
               <span>Em que ponto do pipeline juntar modelos (dois ou mais)?</span></li>
           </ol>
@@ -74,8 +75,11 @@
             <span>vol, mvol, beta_lambda, mqvol e beta_ds (os dois últimos só acompanhamento): LS, LO, fatores, sobreposição e as misturas com o Essencial recalculado, atualizado todo dia</span></p>
         </td>
         <td>
-          <p class="dec-lead">LS = <b>50% mvol (2m|12m) + 50% beta_lambda</b>, no lugar da vol</p>
-          <p class="dec-h">Por quê: menos dependência do LO, não mais Sharpe</p>
+          <p class="dec-lead">Alteração do método de neutralização:</p>
+          <ul class="dec">
+            <li>de vol (2m)</li>
+            <li>para <b>mvol (2m|12m) + beta_lambda</b></li>
+          </ul>
           <ul class="dec">
             <li><b>β do LS ao LO:</b> de 0,17 para 0,03 (t −11,7; menor em 19 de 19 anos). Contra o LO sem ajuste de vol, de 0,12 para 0,01.</li>
             <li><b>Choques do LO:</b> o LS deixa de ir junto. Nas quedas fortes, de −0,36% para −0,01% ao dia; nas altas fortes, de +0,43% para +0,16%. Lula Day do Essencial: de −6,7% para −5,0%.</li>
