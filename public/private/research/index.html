@@ -22,12 +22,13 @@
   ol.pesq { margin: 0; padding-left: 18px; }
   ol.pesq li { margin-bottom: 8px; }
   ol.pesq li span { display: block; color: var(--muted); font-size: 12px; }
-  p.acomp { margin: 10px 0 0; padding-top: 10px; border-top: 1px solid var(--line); }
-  p.acomp span { display: block; color: var(--muted); font-size: 12px; }
+  div.acomp { margin: 10px 0 0; padding-top: 10px; border-top: 1px solid var(--line); }
+  ul.perg { margin: 2px 0 0; padding-left: 16px; color: var(--muted); font-size: 12px; }
+  ol.pesq ul.perg li { margin-bottom: 0; }
   a { color: var(--accent); font-weight: 600; text-decoration: none; }
   a:hover { text-decoration: underline; }
   p.dec-lead { margin: 0 0 4px; }
-  p.dec-h { margin: 12px 0 4px; font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  p.dec-h { margin: 12px 0 4px; font-size: 12px; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: .04em; }
   ul.dec { margin: 0; padding-left: 18px; }
   ul.dec li { margin-bottom: 6px; }
   p.dec-h.dec-first { margin-top: 0; }
@@ -65,14 +66,25 @@
         <td>
           <ol class="pesq">
             <li><a href="/research/neutralizacao-2026-11">Neutralização: Impactos nos Choques de Mercado</a>
-              <span>A cauda comum vem da neutralização? Algum método ganha beta nos choques?</span></li>
+              <ul class="perg">
+                <li>A cauda comum vem da neutralização?</li>
+                <li>Algum método ganha beta nos choques?</li>
+              </ul></li>
             <li><a href="/research/candidatos-ls-2026-11">Alocação de Portfólio</a>
-              <span>Como fica o Essencial com a versão ls mvol + ls beta_lambda versus a composição anterior de ls vol? Portfólio melhora? LO e LS tornam-se mais independentes?</span></li>
+              <ul class="perg">
+                <li>Como fica o Essencial com a versão mvol + beta_lambda?</li>
+                <li>LO e LS tornam-se mais independentes?</li>
+              </ul></li>
             <li><a href="/research/fusao-ls-2026-11">Fusões no Pipeline</a>
-              <span>Em que ponto do pipeline juntar modelos (dois ou mais)?</span></li>
+              <ul class="perg">
+                <li>Em que ponto do pipeline juntar modelos?</li>
+              </ul></li>
           </ol>
-          <p class="acomp"><a href="/research/ls-neutralizacao">Acompanhamento diário</a>
-            <span>vol, mvol, beta_lambda, mqvol e beta_ds (os dois últimos só acompanhamento): LS, LO, fatores, sobreposição e as misturas com o Essencial recalculado, atualizado todo dia</span></p>
+          <div class="acomp"><a href="/research/ls-neutralizacao">Monitoramento live</a>
+            <ul class="perg">
+              <li>vol, mvol, mqvol</li>
+              <li>beta_lambda, beta_ds</li>
+            </ul></div>
         </td>
         <td>
           <p class="dec-h dec-first">Decisão</p>
