@@ -1,29 +1,4 @@
 <html><head>
 
             <link rel="icon" href="/static/image/vokin_mark.svg" type="image/svg+xml">
-            <meta charset='utf-8'></head><body style='font-family:sans-serif'><h1>1 OK · 1 falharam</h1><p>15/11/2026 23:02</p><ul><li style='color:green'>OK — Portfolio <span style='color:#666'>(23:02:17, 28.9MB)</span></li><li style='color:red'><b>FALHOU — Brief D+0</b><pre style='white-space:pre-wrap;color:#444;font-size:12px'>KeyError: &quot;[&#x27;cosmos_fic&#x27;] not in index&quot;
-[32m---&gt; [39m[32m53[39m         retornos=[30;43mself[39;49m[30;43m.[39;49m[30;43m_data[39;49m[30;43m[[39;49m[30;43m&#x27;[39;49m[30;43mprices_full[39;49m[30;43m&#x27;[39;49m[30;43m][39;49m[30;43m[[39;49m[30;43mdaily_weights[39;49m[30;43m.[39;49m[30;43mcolumns[39;49m[30;43m][39;49m.pct_change(),
-[32m     54[39m         risk_free=[38;5;28mself[39m._data[[33m&#x27;[39m[33mreturns[39m[33m&#x27;[39m][[38;5;28mself[39m._data.risk_free_name],
-[32m     55[39m     )
-[32m     57[39m     [38;5;28;01mreturn[39;00m cota_gross
-[36mFile [39m[32m/usr/local/lib/python3.12/dist-packages/pandas/core/frame.py:4108[39m, in [36mDataFrame.__getitem__[39m[34m(self, key)[39m
-[32m   4104[39m                 indexer = [indexer]
-[32m   4105[39m         [38;5;28;01melse[39;00m:
-[32m   4106[39m             [38;5;28;01mif[39;00m is_iterator(key):
-[32m   4107[39m                 key = list(key)
-[32m-&gt; [39m[32m4108[39m             indexer = self.columns._get_indexer_strict(key, [33m&quot;columns&quot;[39m)[[32m1[39m]
-[32m   4109[39m
-[32m   4110[39m         [38;5;66;03m# take() does not accept boolean indexers[39;00m
-[32m   4111[39m         [38;5;28;01mif[39;00m getattr(indexer, [33m&quot;dtype&quot;[39m, [38;5;28;01mNone[39;00m) == bool:
-[36mFile [39m[32m/usr/local/lib/python3.12/dist-packages/pandas/core/indexes/base.py:6200[39m, in [36mIndex._get_indexer_strict[39m[34m(self, key, axis_name)[39m
-[32m   6197[39m [38;5;28;01melse[39;00m:
-[32m   6198[39m     keyarr, indexer, new_indexer = [38;5;28mself[39m._reindex_non_unique(keyarr)
-[32m-&gt; [39m[32m6200[39m [30;43mself[39;49m[30;43m.[39;49m[30;43m_raise_if_missing[39;49m[30;43m([39;49m[30;43mkeyarr[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mindexer[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43maxis_name[39;49m[30;43m)[39;49m
-[32m   6202[39m keyarr = [38;5;28mself[39m.take(indexer)
-[32m   6203[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(key, Index):
-[32m   6204[39m     [38;5;66;03m# GH 42790 - Preserve name from an Index[39;00m
-[36mFile [39m[32m/usr/local/lib/python3.12/dist-packages/pandas/core/indexes/base.py:6252[39m, in [36mIndex._raise_if_missing[39m[34m(self, key, indexer, axis_name)[39m
-[32m   6249[39m     [38;5;28;01mraise[39;00m [38;5;167;01mKeyError[39;00m([33mf[39m[33m&quot;[39m[33mNone of [[39m[38;5;132;01m{[39;00mkey[38;5;132;01m}[39;00m[33m] are in the [[39m[38;5;132;01m{[39;00maxis_name[38;5;132;01m}[39;00m[33m][39m[33m&quot;[39m)
-[32m   6251[39m not_found = [38;5;28mlist[39m(ensure_index(key)[missing_mask.nonzero()[[32m0[39m]].unique())
-[32m-&gt; [39m[32m6252[39m [38;5;28;01mraise[39;00m [38;5;167;01mKeyError[39;00m([33mf[39m[33m&quot;[39m[38;5;132;01m{[39;00mnot_found[38;5;132;01m}[39;00m[33m not in index[39m[33m&quot;[39m)
-[31mKeyError[39m: &quot;[&#x27;cosmos_fic&#x27;] not in index&quot;</pre></li></ul></body></html>
+            <meta charset='utf-8'></head><body style='font-family:sans-serif'><h1>2 OK · 0 falharam</h1><p>15/11/2026 23:34</p><ul><li style='color:green'>OK — Portfolio <span style='color:#666'>(23:33:43, 28.9MB)</span></li><li style='color:green'>OK — Brief D+0 <span style='color:#666'>(23:34:27, 30.2MB)</span></li></ul></body></html>
