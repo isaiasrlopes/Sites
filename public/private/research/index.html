@@ -44,6 +44,7 @@
   details.raz summary::after { content: "▸"; display: inline-block; margin-left: 6px; color: var(--muted);
                                transition: transform .15s; }
   details.raz[open] summary::after { transform: rotate(90deg); }
+  details.raz.dec-first summary { margin-top: 0; }
   p.dec-fonte { margin: 10px 0 0; font-size: 12px; color: var(--muted); }
   ul.plano { list-style: none; margin: 0; padding: 0; }
   ul.plano li { padding: 3px 0 3px 22px; position: relative; }
@@ -107,12 +108,12 @@
           </ol></div>
         </td>
         <td>
-          <p class="dec-h dec-first">Decisão</p>
+          <details class="raz dec-first" open><summary class="dec-h">Decisão</summary>
           <p class="dec-lead">Alteração do método de neutralização:</p>
           <ul class="dec">
             <li>de vol (2m)</li>
             <li>para <b>mvol (2m|12m) + beta_lambda</b></li>
-          </ul>
+          </ul></details>
           <details class="raz"><summary class="dec-h">Razões</summary>
           <ul class="dec">
             <li><b>β do LS ao LO:</b> de 0,17 para 0,03 (t −11,7). Contra o LO 100: de 0,12 para 0,01.</li>
