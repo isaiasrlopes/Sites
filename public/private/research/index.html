@@ -81,7 +81,7 @@
     </thead>
     <tbody>
       <tr>
-        <td class="tema">Neutralização do L&amp;S: impactos nos Choques de Mercado<span>desde 10/2026</span></td>
+        <td class="tema">Neutralização do L&amp;S: Impactos nos Choques de Mercado<span>início 05/10/26</span><span>fim 13/11/26</span></td>
         <td>
           <ol class="pesq">
             <li><details class="pq"><summary><a href="/research/neutralizacao-2026-11">Choques de Mercado</a></summary>
@@ -134,6 +134,53 @@
             <li><b>29/12/26</b> picking de dez: 2/3 (1/3 de beta_lambda)</li>
             <li><b>28/01/27</b> picking de jan: transição completa (50% de beta_lambda)</li>
             <li><b>até 25/02/27</b> a metade da vol passa para a mvol</li>
+          </ul>
+          </summary></details>
+        </td>
+      </tr>
+      <tr>
+        <td class="tema">Equity Managed Volatility<span>início 18/11/26</span><span>fim em andamento</span></td>
+        <td>
+          <ol class="pesq">
+            <li><details class="pq"><summary><a href="/research/lo-vol-scaling-2026-11">LO Vol Scaling via IBOV/SMLL</a></summary>
+              <ul class="perg">
+                <li>Dá para ajustar a vol do LO com IBOV ou SMLL, sem mexer na carteira de ações?</li>
+                <li>O resultado é equivalente ao ajuste semanal de hoje?</li>
+                <li>Medir a vol pela carteira de ações, como o Factors, em vez da cota, muda o resultado?</li>
+              </ul></details></li>
+            <li><details class="pq"><summary><a href="/research/lo-vol-ewm-2026-11">LO Vol Scaling: Simples x EWM</a></summary>
+              <ul class="perg">
+                <li>Estimar a vol por média exponencial muda o resultado?</li>
+                <li>O EWM se sai melhor depois das quedas abruptas?</li>
+                <li>E com a vol medida pela carteira de ações?</li>
+              </ul></details></li>
+          </ol>
+        </td>
+        <td>
+          <details class="raz dec-first" open><summary class="dec-h">Decisão</summary>
+          <p class="dec-lead">Ainda sem decisão. A etapa 1 indica que o ajuste pode sair das ações e ir para o futuro:</p>
+          <ul class="dec">
+            <li>com <b>IBOV</b> ou <b>SMLL</b></li>
+            <li>sem alterar a composição do long only</li>
+          </ul></details>
+          <details class="raz"><summary class="dec-h">Razões</summary>
+          <ul class="dec">
+            <li><b>Equivalência:</b> desde 2005, o Sharpe do LO com ajuste semanal é 0,75; com o futuro de IBOV, 0,74, e com o SMLL, 0,78, contra 0,63 do LO 100. A correlação da versão com IBOV com o LO atual é de 0,98.</li>
+            <li><b>Risco:</b> o drawdown máximo fica parecido (−25,2% do LO, −27,3% com IBOV, −25,5% com SMLL), contra −44,4% do LO 100.</li>
+            <li><b>Regra dos 2/3:</b> as ações ficam intactas; não é preciso comprar BOVA11 contra futuro vendido, nem depender do rebalanceamento semanal.</li>
+            <li><b>Estimador de vol:</b> média simples de 21 dias e EWM empatam, com o ajuste em banda de 10 p.p. (<code>_b10</code>, parecido com o limiar do Factors): Sharpe 0,74 contra 0,73 no span 21 e 0,71 no span 41 (t −0,8 e −1,9). O EWM tira o degrau da exposição depois dos choques, mas o que ganha voltando antes devolve no corte mais fundo (span 21) ou na volta mais lenta (span 41): do choque ao 63º dia, +5,2%, +5,0% e +4,9% na média de 8 choques. A banda dá o mesmo Sharpe do ajuste diário e gira quase metade. Sem motivo para trocar o estimador de hoje.</li>
+            <li><b>Carteira ou cota:</b> medir a vol pela carteira de ações (ex-ante, como o Factors) em vez da cota não muda o resultado: Sharpe igual nas duas etapas (diferenças de até 0,01, sem significância). A série fica mais perto do LO atual: a exposição se afasta 0,8 p.p. da dele, em média, contra 1,0 a 1,2 p.p. pela cota. Na escadinha de 10 p.p. o drawdown piora (−29,3% contra −28,6% com IBOV). Disponível na LibMain como <code>get_clusters(..., scaling_source='carteira')</code>.</li>
+            <li><b>Defasagem:</b> com a vol medida até D, ajustar no fechamento de D+1 em vez de D+2 melhora todas as versões das duas etapas: Sharpe de 0,01 a 0,05 maior (t de 1,2 a 2,7; menor com a banda de 10 p.p. no livro) e drawdown em geral menor, sem mudar a comparação entre elas. Na escadinha de 10 p.p., a piora de drawdown pela carteira some. Pela carteira, D+1 é viável: os preços das ações se conhecem no fechamento de D. Teste de robustez incluído depois dos resultados.</li>
+            <li><b>Em aberto:</b> margem do hedge (ajustes diários do futuro de IBOV e aluguel do SMAL11).</li>
+          </ul></details>
+        </td>
+        <td>
+          <details class="tl"><summary>
+          <ul class="plano">
+            <li class="done"><b>18/11/26</b> etapa 1: LO vol scaling via IBOV/SMLL</li>
+            <li class="done"><b>19/11/26</b> etapa 2: LO vol scaling, simples x EWM</li>
+            <li class="next"><b>a definir</b> margem do hedge com IBOV e SMLL</li>
+            <li><b>a definir</b> scaling de vol nas carteiras de long only</li>
           </ul>
           </summary></details>
         </td>
