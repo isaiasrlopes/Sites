@@ -154,6 +154,12 @@
                 <li>O EWM se sai melhor depois das quedas abruptas?</li>
                 <li>E com a vol medida pela carteira de ações?</li>
               </ul></details></li>
+            <li><details class="pq"><summary><a href="/research/lo-vol-target-2026-11">LO Vol Scaling: Alvo sem Número Fixo</a></summary>
+              <ul class="perg">
+                <li>Sem fixar os 21% (escolhidos olhando o backtest), quanto do ganho do ajuste continua?</li>
+                <li>O ganho vem de o alvo andar no tempo ou do nível do alvo?</li>
+                <li>Um 2º ajuste lento, de 3 anos, em cima da série ajustada consegue mirar um alvo de vol?</li>
+              </ul></details></li>
           </ol>
         </td>
         <td>
@@ -171,6 +177,8 @@
             <li><b>Estimador de vol:</b> média simples de 21 dias e EWM empatam, com o ajuste em banda de 10 p.p. (<code>_b10</code>, parecido com o limiar do Factors): Sharpe 0,74 contra 0,73 no span 21 e 0,71 no span 41 (t −0,8 e −1,9). O EWM tira o degrau da exposição depois dos choques, mas o que ganha voltando antes devolve no corte mais fundo (span 21) ou na volta mais lenta (span 41): do choque ao 63º dia, +5,2%, +5,0% e +4,9% na média de 8 choques. A banda dá o mesmo Sharpe do ajuste diário e gira quase metade. Sem motivo para trocar o estimador de hoje.</li>
             <li><b>Carteira ou cota:</b> medir a vol pela carteira de ações (ex-ante, como o Factors) em vez da cota não muda o resultado: Sharpe igual nas duas etapas (diferenças de até 0,01, sem significância). A série fica mais perto do LO atual: a exposição se afasta 0,8 p.p. da dele, em média, contra 1,0 a 1,2 p.p. pela cota. Na escadinha de 10 p.p. o drawdown piora (−29,3% contra −28,6% com IBOV). Disponível na LibMain como <code>get_clusters(..., scaling_source='carteira')</code>.</li>
             <li><b>Defasagem:</b> com a vol medida até D, ajustar no fechamento de D+1 em vez de D+2 melhora todas as versões das duas etapas: Sharpe de 0,01 a 0,05 maior (t de 1,2 a 2,7; menor com a banda de 10 p.p. no livro) e drawdown em geral menor, sem mudar a comparação entre elas. Na escadinha de 10 p.p., a piora de drawdown pela carteira some. Pela carteira, D+1 é viável: os preços das ações se conhecem no fechamento de D. Teste de robustez incluído depois dos resultados.</li>
+            <li><b>Alvo sem número fixo:</b> trocar os 21% por um alvo tirado só do passado (a vol do LO 100 nos últimos 3 a 5 anos, ou a mediana da vol curta) melhora o resultado desde 2011: Sharpe 0,71–0,72 contra 0,65 do fixo de 21% (t de 1,4 a 2,3) e drawdown de −17% a −21%, contra −25%. Os 21% quase não agiam: o LO 100 rodou abaixo disso, e o fixo21 fica 98% exposto. O ganho vem do nível do alvo, não de ele andar no tempo: um fixo de 13% empata (robustez incluída depois), mas exige escolher o número olhando o backtest; a regra relativa chega lá sozinha. Vol curta de 10 dias é melhor que 20, 30 ou 40 em todas as regras, com o triplo de giro.</li>
+            <li><b>Dois ajustes:</b> o ajuste rápido relativo deixa a série mais homocedástica (a vol de 3 meses varia metade da do LO 100). Um 2º ajuste de 3 anos, sem teto, em cima dela entrega a vol pedida com erro de 1 a 1,5 p.p. e custa só 0,02 de Sharpe: o alvo (12%, 15% ou 18%) vira decisão de risco, não parâmetro do backtest. A 15%, Sharpe 0,70 contra 0,63 com o fixo de 21% por baixo; só o ajuste lento, sem o rápido, não melhora o LO 100.</li>
             <li><b>Em aberto:</b> margem do hedge (ajustes diários do futuro de IBOV e aluguel do SMAL11).</li>
           </ul></details>
         </td>
@@ -179,6 +187,7 @@
           <ul class="plano">
             <li class="done"><b>18/11/26</b> etapa 1: LO vol scaling via IBOV/SMLL</li>
             <li class="done"><b>19/11/26</b> etapa 2: LO vol scaling, simples x EWM</li>
+            <li class="done"><b>20/11/26</b> etapa 3: LO vol scaling, alvo sem número fixo</li>
             <li class="next"><b>a definir</b> margem do hedge com IBOV e SMLL</li>
             <li><b>a definir</b> scaling de vol nas carteiras de long only</li>
           </ul>
