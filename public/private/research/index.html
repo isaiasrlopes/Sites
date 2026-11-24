@@ -123,7 +123,7 @@
             <li><b>Por que beta_lambda:</b> é notional neutral sem ficar tão vendido em bolsa quanto o notional tradicional. Contra o notional neutral tradicional, o β ao LO 100 vai de −0,13 para 0,00 e a correlação com o IBOV, de −0,41 para −0,24. Preserva mais os fatores do que o double sort por beta (beta_ds): correlação média de 0,88 com a versão notional de cada fator, contra 0,78, e maior em 7 de 8 fatores. Desde 2010, tem Sharpe maior (1,59 contra 1,48) e drawdown menor (−11,1% contra −15,6%). Carrega um β levemente vendido e estável ao IBOV (−0,11, t −12, desde 2006), que paga nas quedas de mercado: nos dias de IBOV abaixo de −4%, rende +0,47% ao dia, contra +0,06% da vol. Também reduz o net long da vol (30% em média, até 74%): numa crise em que tudo cai junto, esse net vira beta antes que o modelo consiga zerá-lo.</li>
             <li><b>Por que a fusão:</b> cada método compensa o excesso do outro. A mvol ainda acompanha o LO 100 (β 0,08); a beta_lambda zera o LO, mas fica vendida em IBOV (β −0,11). A fusão fica entre os dois: β de 0,03 ao LO 100 e de −0,09 ao IBOV, com o net do LS de 13% em média (máximo de 35%).</li>
             <li><b>Limite:</b> a fusão tira do LS o pedaço de LO embutido pela vol, não o risco dos fatores. Nos dias em que o LO cai por fator, e não por mercado, o LS ainda perde, só que menos (de −0,45% para −0,10% ao dia, desde 2006). Esse risco é de alocação, não de neutralização.</li>
-            <li><b>Gatilho da transição:</b> começa no primeiro picking com o LO em pelo menos 16% do Essencial, ou no de abril de 2027, o que vier primeiro. O LO é a posição líquida em ações (descontado o futuro de IBOV, quando houver); 16% é o p25 do peso dele no Essencial desde 2011 (de 16% a 18% nos modelos de LO). Em 24/11, está entre 7% e 10%. O motivo é um choque de alta com o LO pequeno: nesses choques, o β do LS vai para o lado errado nos dois modelos (nos dias de IBOV acima de +4%, desde 2006, de −0,01 na véspera para −0,05 no dia na vol; de −0,05 para −0,09 na fusão). A fusão parte de mais baixo e, sem LO no fundo, nada compensa. Com o LO no tamanho normal, isso vira alocação. Pelo freio do modelo B, o LO deve voltar entre dezembro e março, se a vol de um mês ceder.</li>
+            <li><b>Gatilho da montagem:</b> no primeiro picking com o LO em pelo menos 16% do Essencial, o LS passa de uma vez para 50% mvol e 50% beta_lambda, sem terços; se o LO não chegar lá, o prazo final é o picking de abril de 2027. O LO é a posição líquida em ações (descontado o futuro de IBOV, quando houver); 16% é o p25 do peso dele no Essencial desde 2011 (de 16% a 18% nos modelos de LO). Em 24/11, está entre 7% e 10%. O motivo é um choque de alta com o LO pequeno: nesses choques, o β do LS vai para o lado errado nos dois modelos (nos dias de IBOV acima de +4%, desde 2006, de −0,01 na véspera para −0,05 no dia na vol; de −0,05 para −0,09 na fusão). A fusão parte de mais baixo e, sem LO no fundo, nada compensa. Com o LO no tamanho normal, isso vira alocação. Pelo freio do modelo B, o LO deve voltar entre dezembro e março, se a vol de um mês ceder.</li>
           </ul></details>
         </td>
         <td>
@@ -131,11 +131,9 @@
           <ul class="plano">
             <li class="done"><b>05/10/26</b> início</li>
             <li class="done"><b>13/11/26</b> decisão registrada</li>
-            <li class="done"><b>24/11/26</b> início da transição atrelado ao LO no Essencial</li>
-            <li class="next"><b>gatilho</b> 1º picking com o LO em 16% do Essencial ou mais, ou o picking de abril/27, o que vier primeiro: 1/3 da transição (LS com 1/6 de beta_lambda)</li>
-            <li><b>picking seguinte</b> 2/3 (1/3 de beta_lambda)</li>
-            <li><b>picking seguinte</b> transição completa (50% de beta_lambda)</li>
-            <li><b>1 mês depois</b> a metade da vol passa para a mvol</li>
+            <li class="done"><b>24/11/26</b> montagem atrelada ao LO no Essencial</li>
+            <li class="next"><b>gatilho</b> 1º picking com o LO em 16% do Essencial ou mais: monta tudo de uma vez (LS com 50% mvol e 50% beta_lambda)</li>
+            <li><b>picking de abril/27</b> prazo final: monta tudo, mesmo sem o LO em 16%</li>
           </ul>
           </summary></details>
         </td>
