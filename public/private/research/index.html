@@ -139,7 +139,7 @@
         </td>
       </tr>
       <tr>
-        <td class="tema">Equity Managed Volatility<span>início 18/11/26</span><span>fim em andamento</span></td>
+        <td class="tema">Equity Managed Volatility<span>início 18/11/26</span><span>fim 24/11/26</span></td>
         <td>
           <ol class="pesq">
             <li><details class="pq"><summary><a href="/research/lo-vol-scaling-2026-11">LO Vol Scaling via IBOV/SMLL</a></summary>
@@ -154,57 +154,65 @@
                 <li>O EWM se sai melhor depois das quedas abruptas?</li>
                 <li>E com a vol medida pela carteira de ações?</li>
               </ul></details></li>
-            <li><details class="pq"><summary><a href="/research/lo-vol-target-2026-11">LO Vol Scaling: Alvo sem Número Fixo</a></summary>
+            <li><details class="pq"><summary><a href="/research/freio-2026-11">O Freio: o Ativo contra a Própria Vol</a></summary>
               <ul class="perg">
-                <li>Sem fixar os 21% (escolhidos olhando o backtest), quanto do ganho do ajuste continua?</li>
-                <li>O ganho vem de o alvo andar no tempo ou do nível do alvo?</li>
-                <li>Um 2º ajuste lento, de 3 anos, em cima da série ajustada consegue mirar um alvo de vol?</li>
-                <li>Ligar o ajuste só no quintil de vol mais alto opera menos com o mesmo resultado?</li>
-                <li>Fazer o ajuste pelo futuro de IBOV, dimensionado por vol ou por beta, mantém o resultado?</li>
+                <li>Antes de escalar a vol, dá para tornar a série homocedástica comparando o ativo com a própria história?</li>
+                <li>Modelo A (vol longa ÷ vol de 1 mês, limitado a 1): quanto histórico, de 1 a 5 anos?</li>
+                <li>Modelo B (liga acima do percentil 80, mira a mediana): homocedastiza mais que o A? A que custo de giro?</li>
               </ul></details></li>
-            <li><details class="pq"><summary>Alvo sem Número Fixo em <a href="/research/ibov-vol-target-2026-11">IBOV</a>, <a href="/research/smll-vol-target-2026-11">SMLL</a>, <a href="/research/spx-vol-target-2026-11">SPX</a> e <a href="/research/nasdaq-vol-target-2026-11">Nasdaq</a></summary>
+            <li><details class="pq"><summary><a href="/research/camada2-2026-11">A Série Freada num Alvo de Vol</a></summary>
               <ul class="perg">
-                <li>As mesmas regras da etapa 3, sem mudar nada, num ativo só: o resultado do LO se repete?</li>
-                <li>O ajuste à vol agrega Sharpe ou só reduz risco?</li>
+                <li>A série freada, escalada para um alvo comum, acerta a vol pedida?</li>
+                <li>Medindo a vol em 1, 3 ou 5 anos, qual controla melhor o risco?</li>
               </ul></details></li>
-            <li><details class="pq"><summary><a href="/research/vol-regime-teto-2026-11">Ajuste Só no Regime Estranho e Teto de 20%</a></summary>
+            <li><details class="pq"><summary><a href="/research/fundo-vol-2026-11">O Ajuste de Vol no Fundo</a></summary>
               <ul class="perg">
-                <li>Ajustar só quando a vol passa de um percentil alto da própria história dá o mesmo resultado operando menos?</li>
-                <li>Alguma regra tirada só do passado do ativo protege contra vol alta por anos, como o Nasdaq em 2000–2002?</li>
-                <li>A regra relativa com um teto fixo de 20% no alvo resolve esse caso sem estragar os outros ativos?</li>
+                <li>Como fica o Essencial hoje, com o modelo A e com o modelo B, nos parâmetros escolhidos?</li>
+                <li>Qual janela de alavancagem nos alocadores, olhando a cauda e o giro do LS?</li>
+                <li>Dá para migrar sem descolar a cota do ano?</li>
               </ul></details></li>
           </ol>
+          <div class="acomp"><ol class="pesq" start="6">
+            <li><details class="pq"><summary><a href="/research/ajuste-vol">Monitoramento Live</a></summary>
+              <ul class="perg">
+                <li>produção (com o hedge de consenso)</li>
+                <li>transição: modelo B, LO do Factors</li>
+                <li>futura: modelo B, LO via IBOV</li>
+              </ul></details></li>
+          </ol></div>
         </td>
         <td>
           <details class="raz dec-first" open><summary class="dec-h">Decisão</summary>
-          <p class="dec-lead">Ainda sem decisão. A etapa 1 indica que o ajuste pode sair das ações e ir para o futuro:</p>
+          <p class="dec-lead">Ajuste de vol em duas camadas em todos os <code>*_av</code>:</p>
           <ul class="dec">
-            <li>com <b>IBOV</b> ou <b>SMLL</b></li>
-            <li>sem alterar a composição do long only</li>
+            <li>freio: <b>modelo B</b> (21 dias, histórico de 5 anos, percentil 80)</li>
+            <li>alvo: <b>12% pela vol de 1 ano</b> da série freada</li>
+            <li>alocadores pela <b>menor alavancagem entre 1 e 5 anos</b></li>
+            <li>LO via futuro de IBOV <b>numa segunda etapa</b></li>
           </ul></details>
           <details class="raz"><summary class="dec-h">Razões</summary>
           <ul class="dec">
-            <li><b>Equivalência:</b> desde 2005, o Sharpe do LO com ajuste semanal é 0,75; com o futuro de IBOV, 0,74, e com o SMLL, 0,78, contra 0,63 do LO 100. A correlação da versão com IBOV com o LO atual é de 0,98.</li>
-            <li><b>Risco:</b> o drawdown máximo fica parecido (−25,2% do LO, −27,3% com IBOV, −25,5% com SMLL), contra −44,4% do LO 100.</li>
-            <li><b>Regra dos 2/3:</b> as ações ficam intactas; não é preciso comprar BOVA11 contra futuro vendido, nem depender do rebalanceamento semanal.</li>
-            <li><b>Estimador de vol:</b> média simples de 21 dias e EWM empatam, com o ajuste em banda de 10 p.p. (<code>_b10</code>, parecido com o limiar do Factors): Sharpe 0,74 contra 0,73 no span 21 e 0,71 no span 41 (t −0,8 e −1,9). O EWM tira o degrau da exposição depois dos choques, mas o que ganha voltando antes devolve no corte mais fundo (span 21) ou na volta mais lenta (span 41): do choque ao 63º dia, +5,2%, +5,0% e +4,9% na média de 8 choques. A banda dá o mesmo Sharpe do ajuste diário e gira quase metade. Sem motivo para trocar o estimador de hoje.</li>
-            <li><b>Carteira ou cota:</b> medir a vol pela carteira de ações (ex-ante, como o Factors) em vez da cota não muda o resultado: Sharpe igual nas duas etapas (diferenças de até 0,01, sem significância). A série fica mais perto do LO atual: a exposição se afasta 0,8 p.p. da dele, em média, contra 1,0 a 1,2 p.p. pela cota. Na escadinha de 10 p.p. o drawdown piora (−29,3% contra −28,6% com IBOV). Disponível na LibMain como <code>get_clusters(..., scaling_source='carteira')</code>.</li>
-            <li><b>Defasagem:</b> com a vol medida até D, ajustar no fechamento de D+1 em vez de D+2 melhora todas as versões das duas etapas: Sharpe de 0,01 a 0,05 maior (t de 1,2 a 2,7; menor com a banda de 10 p.p. no livro) e drawdown em geral menor, sem mudar a comparação entre elas. Na escadinha de 10 p.p., a piora de drawdown pela carteira some. Pela carteira, D+1 é viável: os preços das ações se conhecem no fechamento de D. Teste de robustez incluído depois dos resultados.</li>
-            <li><b>Alvo sem número fixo:</b> trocar os 21% por um alvo tirado só do passado (a vol do LO 100 nos últimos 3 a 5 anos, ou a mediana da vol curta) melhora o resultado desde 2011: Sharpe 0,71–0,72 contra 0,65 do fixo de 21% (t de 1,4 a 2,3) e drawdown de −17% a −21%, contra −25%. Os 21% quase não agiam: o LO 100 rodou abaixo disso, e o fixo21 fica 98% exposto. O ganho vem do nível do alvo, não de ele andar no tempo: um fixo de 13% empata (robustez incluída depois), mas exige escolher o número olhando o backtest; a regra relativa chega lá sozinha. Vol curta de 10 dias é melhor que 20, 30 ou 40 em todas as regras, com o triplo de giro.</li>
-            <li><b>Dois ajustes:</b> o ajuste rápido relativo deixa a série mais homocedástica (a vol de 3 meses varia metade da do LO 100). Um 2º ajuste de 3 anos, sem teto, em cima dela entrega a vol pedida com erro de 1 a 1,5 p.p. e custa só 0,02 de Sharpe: o alvo (12%, 15% ou 18%) vira decisão de risco, não parâmetro do backtest. A 15%, Sharpe 0,70 contra 0,63 com o fixo de 21% por baixo; só o ajuste lento, sem o rápido, não melhora o LO 100.</li>
-            <li><b>Nos índices:</b> as mesmas regras no IBOV, no SMLL e no S&amp;P hedgeado não agregam Sharpe contra o ativo a 100% (IBOV 0,02 contra −0,03 a 0,02; SMLL −0,18 contra −0,16 a −0,21; S&amp;P 0,18 contra 0,19 a 0,23, sem significância); no LO, +0,13 a +0,20 (t 2,0 a 2,7). Nos índices, o ajuste é ferramenta de risco: vol mais baixa e estável e, em geral, drawdown menor. O 2º ajuste acerta a vol pedida nos três (erro de 1 a 3 p.p.) sem mudar o Sharpe.</li>
-            <li><b>Em aberto:</b> margem do hedge (ajustes diários do futuro de IBOV e aluguel do SMAL11).</li>
+            <li><b>Futuro em vez das ações:</b> desde 2005, o Sharpe do LO com ajuste semanal é 0,75; com o futuro de IBOV, 0,74, e com o SMLL, 0,78, contra 0,63 do LO 100, com drawdown parecido (−25,2%, −27,3% e −25,5%, contra −44,4%). As ações ficam intactas.</li>
+            <li><b>Estimador e fonte da vol:</b> média simples e EWM empatam; medir pela carteira de ações ou pela cota também. Sem motivo para trocar o estimador de hoje.</li>
+            <li><b>Duas camadas:</b> o problema é a heterocedasticidade. Um alvo fixo direto na série corta tarde e realavanca rápido; primeiro o freio (o ativo contra a própria vol) deixa a série homocedástica, e só então o alvo a coloca na régua comum.</li>
+            <li><b>Por que o B:</b> nos cinco ativos é o freio mais homocedástico (variação da vol de 21 dias de 0,56 a 0,66 da do ativo, contra 0,61 a 0,69 do A de 5 anos) e o que mais corta as surpresas (Covid: pico de 2,0 a 3,0 vezes a vol de 3 anos, contra 6 a 8 no ativo), com giro baixo (1,1 a 1,4 vez o PL por ano). No A, o histórico de 5 anos é o melhor.</li>
+            <li><b>No fundo:</b> mesmo Sharpe da produção (1,90 contra 1,92 desde 2017; 1,34 contra 1,33 em 5 anos), com menos risco: drawdown de −9,9% contra −10,6% e pico de vol de 1 ano de 12,9% contra 13,5% em 5 anos. O beta melhora (1,23 → 1,27) pelo equity e pelo beta global; o alfa empata.</li>
+            <li><b>Alocadores:</b> a menor alavancagem entre 1 e 5 anos tem o Sharpe da de 1 ano com menos cauda e mexe menos no LS (peso entre 0,55 e 0,76, giro de 0,36 vez por ano, no máximo 8,6 p.p. num dia). As janelas curtas têm Sharpe igual ou maior, mas mexem demais no LS (saltos de 17 a 34 p.p. num dia).</li>
+            <li><b>Régua:</b> o hedge do dólar no timing do Brasil por consenso extremo conta como já adotado nas três cotas, para a comparação medir só o ajuste de vol.</li>
+            <li><b>Duas etapas:</b> com o LO via IBOV, o retorno de 2026 abre 1,3 p.p. sobre a produção, todo vindo do LO. A transição mantém o LO do Factors (7,4% contra 7,3% da produção) e muda todo o resto; o LO via IBOV vem depois. É a mesma metodologia, acompanhada em paralelo.</li>
+            <li><b>Custo nos ativos do Brasil:</b> sozinhos, IBOV, SMLL, DI e dólar perdem Sharpe com a camada 2 de 1 ano, que realavanca depois de anos calmos. No fundo, isso não aparece.</li>
+            <li><b>Em aberto:</b> margem do hedge com IBOV; o momentum no LO fica para outro estudo.</li>
           </ul></details>
         </td>
         <td>
           <details class="tl"><summary>
           <ul class="plano">
             <li class="done"><b>18/11/26</b> etapa 1: LO vol scaling via IBOV/SMLL</li>
-            <li class="done"><b>19/11/26</b> etapa 2: LO vol scaling, simples x EWM</li>
-            <li class="done"><b>20/11/26</b> etapa 3: LO vol scaling, alvo sem número fixo</li>
-            <li class="done"><b>21/11/26</b> etapa 3 no IBOV, no SMLL e no SPX</li>
-            <li class="next"><b>a definir</b> margem do hedge com IBOV e SMLL</li>
-            <li><b>a definir</b> scaling de vol nas carteiras de long only</li>
+            <li class="done"><b>19/11/26</b> etapa 2: simples x EWM</li>
+            <li class="done"><b>23/11/26</b> etapas 3 e 4: freio e alvo</li>
+            <li class="done"><b>24/11/26</b> etapa 5 e decisão; início do monitoramento</li>
+            <li class="next"><b>a definir</b> deploy da transição (todos os <code>*_av</code>, LO do Factors)</li>
+            <li><b>a definir</b> LO via futuro de IBOV</li>
           </ul>
           </summary></details>
         </td>
