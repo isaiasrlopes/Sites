@@ -53,6 +53,10 @@
   ul.plano li.done::before { background: var(--done); }
   ul.plano li.next::before { background: var(--next); }
   ul.plano b { white-space: nowrap; }
+  ul.plano ol.todo { margin: 4px 0 0; padding-left: 18px; font-size: 13px; }
+  ul.plano ol.todo li { padding: 1px 0; }
+  ul.plano ol.todo li::before { content: none; }
+  details.tl:not([open]) ul.plano ol.todo li { display: list-item; }
   details.tl summary { display: block; list-style: none; cursor: pointer; }
   details.tl summary::-webkit-details-marker { display: none; }
   details.tl:not([open]) ul.plano li:not(.next) { display: none; }
@@ -211,8 +215,14 @@
             <li class="done"><b>19/11/26</b> etapa 2: simples x EWM</li>
             <li class="done"><b>23/11/26</b> etapas 3 e 4: freio e alvo</li>
             <li class="done"><b>24/11/26</b> etapa 5 e decisão; início do monitoramento</li>
-            <li class="next"><b>a definir</b> deploy da transição (todos os <code>*_av</code>, LO do Factors)</li>
-            <li><b>a definir</b> LO via futuro de IBOV</li>
+            <li class="done"><b>24/11/26</b> transição em produção (todos os <code>*_av</code>, LO do Factors)</li>
+            <li class="next"><b>a definir</b> LO via futuro de IBOV (só troca a entrada do LO; passo a passo no README da pesquisa)
+              <ol class="todo">
+                <li>antes: gatilho, margem do futuro, pesos abertos em ações + futuro para a mesa (nos 16% do LO para o LS contam só as ações)</li>
+                <li><code>lo_timing_100</code> → freio B → alvo 12% (1 ano, diário, sem teto) → ações a 100% e o ajuste (k − 1) no futuro de IBOV</li>
+                <li><code>lo_av</code> = LO; <code>equity_av</code> (S&amp;P + LO) igual</li>
+                <li>conferir contra a cota futura do estudo; deploy; encerrar o monitoramento</li>
+              </ol></li>
           </ul>
           </summary></details>
         </td>
