@@ -221,7 +221,9 @@
                 <li>antes: gatilho, margem do futuro, pesos abertos em ações + futuro para a mesa (nos 16% do LO para o LS contam só as ações)</li>
                 <li><code>lo_timing_100</code> → freio B → alvo 12% (1 ano, diário, sem teto) → ações a 100% e o ajuste (k − 1) no futuro de IBOV</li>
                 <li><code>lo_av</code> = LO; <code>equity_av</code> (S&amp;P + LO) igual</li>
-                <li>conferir contra a cota futura do estudo; deploy; encerrar o monitoramento</li>
+                <li><b>atenção:</b> o LO (ações + futuro) passa pelo timing como <b>um bloco só</b>; aberto, a perna vendida do futuro vira comprada, sem erro</li>
+                <li>conferir contra a cota futura do estudo: Sharpe tem que fazer sentido (1,90 desde 2017, 1,34 em 5 anos); Sharpe alto demais é suspeita do bloco; peso do futuro negativo quando k &lt; 1</li>
+                <li>deploy; encerrar o monitoramento</li>
               </ol></li>
           </ul>
           </summary></details>
