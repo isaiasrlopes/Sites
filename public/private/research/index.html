@@ -210,7 +210,7 @@
           <details class="raz"><summary class="dec-h">Razões</summary>
           <ul class="dec">
             <li><b>Futuro em vez das ações:</b> desde 2005, o Sharpe do LO com ajuste semanal é 0,75; com o futuro de IBOV, 0,74, e com o SMLL, 0,78, contra 0,63 do LO 100, com drawdown parecido (−25,2%, −27,3% e −25,5%, contra −44,4%). As ações ficam intactas.</li>
-            <li><b>Estimador e fonte da vol:</b> medir pela carteira de ações ou pela cota empata. Nas três camadas, o EWM deixa a vol um pouco mais estável (oscilação da vol de 21 dias do Essencial de 0,29 para 0,28 desde 2017) com a mesma cauda e o mesmo Sharpe (1,91 contra 1,94, t 1,6), mas gira cerca de 40% mais nos ativos e mexe mais no LS (maior salto num dia de 8,6 para 11,5 p.p.). Fica a vol simples.</li>
+            <li><b>Estimador e fonte da vol:</b> medir pela carteira de ações ou pela cota empata. Nas três camadas, o EWM deixa a vol só um pouco mais estável (oscilação da vol de 21 dias do Essencial de 0,29 para 0,28 desde 2017; desde 2008, de 0,28 para 0,29), com a mesma cauda e o mesmo Sharpe (1,91 contra 1,93 desde 2017, 1,84 contra 1,82 desde 2008), mas gira cerca de 40% mais nos ativos e mexe mais no LS (maior salto num dia de 8,6 para 11,5 p.p.). Fica a vol simples.</li>
             <li><b>Duas camadas:</b> o problema é a heterocedasticidade. Um alvo fixo direto na série corta tarde e realavanca rápido; primeiro o freio (o ativo contra a própria vol) deixa a série homocedástica, e só então o alvo a coloca na régua comum.</li>
             <li><b>Por que o B:</b> nos cinco ativos é o freio mais homocedástico (variação da vol de 21 dias de 0,56 a 0,66 da do ativo, contra 0,61 a 0,69 do A de 5 anos) e o que mais corta as surpresas (Covid: pico de 2,0 a 3,0 vezes a vol de 3 anos, contra 6 a 8 no ativo), com giro baixo (1,1 a 1,4 vez o PL por ano). No A, o histórico de 5 anos é o melhor.</li>
             <li><b>No fundo:</b> mesmo Sharpe da produção (1,90 contra 1,92 desde 2017; 1,34 contra 1,33 em 5 anos), com menos risco: drawdown de −9,9% contra −10,6% e pico de vol de 1 ano de 12,9% contra 13,5% em 5 anos. O beta melhora (1,23 → 1,27) pelo equity e pelo beta global; o alfa empata.</li>
@@ -239,7 +239,7 @@
                 <li>deploy; encerrar o monitoramento</li>
               </ol></li>
             <li class="done"><b>25/11/26</b> etapa 6: simples x EWM nas três camadas; fica a vol simples, a consequência no portfólio não muda</li>
-            <li><b>a definir</b> série do T10 (<code>ust10yfut</code>) parada por trechos (110 dias em 2009, também 2006, 2007 e 2014) e depois saltando: corrigir e refazer os recortes desde 2008</li>
+            <li class="done"><b>25/11/26</b> T10 corrigido: o contrato da B3 ficava parado por trechos até 2014 (110 dias em 2009) e depois saltava; <code>ust10yfut</code> passa a ser a fusão (CBOT até 2014, B3 desde 2015) e a etapa 6 foi refeita com ela</li>
           </ul>
           </summary></details>
         </td>
