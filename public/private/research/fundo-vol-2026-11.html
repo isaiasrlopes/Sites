@@ -8619,7 +8619,7 @@ a.anchor-link {
 <h3 id="escopo"><strong>O Que Entra no Fundo</strong></h3>
 <p>O ponto de chegada das etapas 2 a 5, juntas no Essencial, com os parâmetros escolhidos em cada uma:</p>
 <ul>
-<li><strong>Camada 1, a homocedasticização (etapa 3)</strong> (<code>get_brake</code>): janela de 21 dias e histórico de 5 anos, banda de 10%. Modelo A (<code>'ratio'</code>) ou
+<li><strong>Camada 1, a homocedastização (etapa 3)</strong> (<code>get_brake</code>): janela de 21 dias e histórico de 5 anos, banda de 10%. Modelo A (<code>'ratio'</code>) ou
 B (<code>'percentile'</code>, percentil 80, mira a mediana). Em todos os <code>*_av</code> de um ativo só (S&amp;P, T10, ouro, BTC, IBOV, SMLL,
 DI de 3 e 8 anos, dólar, os <code>high_av</code> do size) e no LO.</li>
 <li><strong>Camada 2, o vol scaling (etapa 4)</strong> (<code>get_clusters</code>): 12% pela vol de 1 ano da série freada (19,2% nos <code>high_av</code>). Nas misturas já
@@ -12514,7 +12514,7 @@ método nos ativos do Brasil.</li>
 A diferença está toda no LO (5,7% na produção, 7,0% na transição e 14,6% via IBOV). O Sharpe da transição fica em
 1,89 desde 2017 e 1,29 em 5 anos, com a menor cauda das três (drawdown −9,5%).</li>
 </ul>
-<p><strong>Decisão:</strong> modelo B (homocedasticização de 21 dias com histórico de 5 anos, percentil 80) + vol scaling de 12% em 1
+<p><strong>Decisão:</strong> modelo B (homocedastização de 21 dias com histórico de 5 anos, percentil 80) + vol scaling de 12% em 1
 ano + alocadores pela menor alavancagem entre 1 e 5 anos. Migração em duas etapas: agora, tudo menos o LO (transição,
 em produção desde 24/11/2026); depois, o LO via futuro de IBOV. As três cotas seguem no monitoramento live.</p>
 </div>

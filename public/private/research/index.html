@@ -159,7 +159,7 @@
                 <li>O resultado é equivalente ao ajuste semanal de hoje?</li>
                 <li>Medir a vol pela carteira de ações, como o Factors, em vez da cota, muda o resultado?</li>
               </ul></details></li>
-            <li><details class="pq"><summary><a href="/research/freio-2026-11">Camada 1: Homocedasticização</a></summary>
+            <li><details class="pq"><summary><a href="/research/freio-2026-11">Camada 1: Homocedastização</a></summary>
               <ul class="perg">
                 <li>Antes de escalar a vol, dá para tornar a série homocedástica comparando o ativo com a própria história?</li>
                 <li>Modelo A (vol longa ÷ vol de 1 mês, limitado a 1) e modelo B (liga acima do percentil 80, mira a mediana): quanto histórico, de 1 a 5 anos?</li>
@@ -179,7 +179,7 @@
               </ul></details></li>
             <li><details class="pq"><summary><a href="/research/fundo-vol-2026-11">Consequência sobre Alocação de Portfólio</a></summary>
               <ul class="perg">
-                <li>Juntando tudo (LO via IBOV, homocedasticização, vol scaling e alocadores), como fica o Essencial, com o modelo A e com o B?</li>
+                <li>Juntando tudo (LO via IBOV, homocedastização, vol scaling e alocadores), como fica o Essencial, com o modelo A e com o B?</li>
                 <li>Quais os impactos em cada bloco do fundo?</li>
                 <li>Dá para migrar sem descolar a cota do ano?</li>
               </ul></details></li>
@@ -197,7 +197,7 @@
           <details class="raz dec-first" open><summary class="dec-h">Decisão</summary>
           <p class="dec-lead">Ajuste de vol em duas camadas em todos os <code>*_av</code>:</p>
           <ul class="dec">
-            <li>homocedasticização: <b>modelo B</b> (21 dias, histórico de 5 anos, percentil 80)</li>
+            <li>homocedastização: <b>modelo B</b> (21 dias, histórico de 5 anos, percentil 80)</li>
             <li>vol scaling: <b>12% pela vol de 1 ano</b> da série homocedástica</li>
             <li>alocadores pela <b>menor alavancagem entre 1 e 5 anos</b></li>
             <li>LO via futuro de IBOV <b>numa segunda etapa</b></li>
@@ -221,7 +221,7 @@
           <ul class="plano">
             <li class="done"><b>18/11/26</b> etapas 1 e 2: fundamentos (separados em 24/11) e LO vol scaled by IBOV/SMLL</li>
             <li class="done"><b>19/11/26</b> simples x EWM só no LO (em stand-by: refeito nas três camadas, abaixo)</li>
-            <li class="done"><b>23/11/26</b> etapas 3 e 4: camada 1 (homocedasticização) e camada 2 (volatility scaling), refeitas em 24/11</li>
+            <li class="done"><b>23/11/26</b> etapas 3 e 4: camada 1 (homocedastização) e camada 2 (volatility scaling), refeitas em 24/11</li>
             <li class="done"><b>24/11/26</b> etapas 5 e 6: camada 3 (alocação de portfólio) e consequência no portfólio; decisão; início do monitoramento</li>
             <li class="done"><b>24/11/26</b> transição em produção (todos os <code>*_av</code>, LO do Factors)</li>
             <li class="next"><b>a definir</b> LO via futuro de IBOV (só troca a entrada do LO; passo a passo no README da pesquisa)
@@ -233,7 +233,7 @@
                 <li>conferir contra a cota futura do estudo: Sharpe tem que fazer sentido (1,90 desde 2017, 1,34 em 5 anos); Sharpe alto demais é suspeita do bloco; peso do futuro negativo quando k &lt; 1</li>
                 <li>deploy; encerrar o monitoramento</li>
               </ol></li>
-            <li><b>a definir</b> simples x EWM nas três camadas (homocedasticização, volatility scaling e alocação de portfólio), com as mesmas janelas e métricas; depois, revisar a consequência no portfólio</li>
+            <li><b>a definir</b> simples x EWM nas três camadas (homocedastização, volatility scaling e alocação de portfólio), com as mesmas janelas e métricas; depois, revisar a consequência no portfólio</li>
           </ul>
           </summary></details>
         </td>
