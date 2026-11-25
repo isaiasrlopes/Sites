@@ -8617,16 +8617,16 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="escopo"><strong>O Que Entra no Fundo</strong></h3>
-<p>O ponto de chegada das etapas 2 a 6, juntas no Essencial, com os parâmetros escolhidos em cada uma:</p>
+<p>O ponto de chegada das etapas 2 a 5, juntas no Essencial, com os parâmetros escolhidos em cada uma:</p>
 <ul>
-<li><strong>Camada 1, a homocedasticização (etapa 4)</strong> (<code>get_brake</code>): janela de 21 dias e histórico de 5 anos, banda de 10%. Modelo A (<code>'ratio'</code>) ou
+<li><strong>Camada 1, a homocedasticização (etapa 3)</strong> (<code>get_brake</code>): janela de 21 dias e histórico de 5 anos, banda de 10%. Modelo A (<code>'ratio'</code>) ou
 B (<code>'percentile'</code>, percentil 80, mira a mediana). Em todos os <code>*_av</code> de um ativo só (S&amp;P, T10, ouro, BTC, IBOV, SMLL,
 DI de 3 e 8 anos, dólar, os <code>high_av</code> do size) e no LO.</li>
-<li><strong>Camada 2, o vol scaling (etapa 5)</strong> (<code>get_clusters</code>): 12% pela vol de 1 ano da série freada (19,2% nos <code>high_av</code>). Nas misturas já
+<li><strong>Camada 2, o vol scaling (etapa 4)</strong> (<code>get_clusters</code>): 12% pela vol de 1 ano da série freada (19,2% nos <code>high_av</code>). Nas misturas já
 ajustadas (<code>kit_brasil_av</code>, <code>equity_av</code>, <code>lo_av</code>), só a camada 2.</li>
-<li><strong>LO (etapas 2 e 3):</strong> <code>lo_timing_100</code> (ações sempre 100%) com as duas camadas num overlay diário de futuro de IBOV;
+<li><strong>LO (etapa 2):</strong> <code>lo_timing_100</code> (ações sempre 100%) com as duas camadas num overlay diário de futuro de IBOV;
 <code>lo_av</code> = o próprio LO.</li>
-<li><strong>Alocadores (etapa 6)</strong> (beta Brasil, alfa, beta global): alavancagem pela menor entre a de 1 e a de 5 anos.</li>
+<li><strong>Alocadores (etapa 5)</strong> (beta Brasil, alfa, beta global): alavancagem pela menor entre a de 1 e a de 5 anos.</li>
 </ul>
 <p><strong>Régua:</strong> a produção com o hedge do dólar no timing do Brasil por consenso extremo (sinal médio &gt;= 0,85 compra dólar).
 O hedge entra nas três cotas e conta como já adotado, para a comparação medir só o ajuste de vol.</p>
@@ -12495,8 +12495,8 @@ ano, a migração vai em duas etapas: agora, o modelo B em tudo, menos a entrada
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="conclusao"><strong>Conclusão</strong></h3>
 <p>Com os dados até 24/11/2026; desde 07/2017 e nos últimos 5 anos; as três cotas com o hedge do dólar por consenso.</p>
-<p>O que entra é a soma das etapas: o LO ajustado pelo futuro de IBOV (etapas 2 e 3), cada ativo homocedasticizado (etapa 4)
-e escalado para 12% pela vol de 1 ano (etapa 5), e os alocadores pela menor alavancagem entre 1 e 5 anos (etapa 6).</p>
+<p>O que entra é a soma das etapas: o LO ajustado pelo futuro de IBOV (etapa 2), cada ativo homocedasticizado (etapa 3)
+e escalado para 12% pela vol de 1 ano (etapa 4), e os alocadores pela menor alavancagem entre 1 e 5 anos (etapa 5).</p>
 <ul>
 <li><strong>Essencial: mesmo Sharpe, menos risco.</strong> Sharpe 1,92 na produção, 1,92 no A e 1,90 no B desde 2017 (1,33, 1,34 e 1,34
 em 5 anos). A vol cai de 12,0% para 11,8%, o drawdown de −10,6% para −10,3% (A) e −9,9% (B) e o pico da vol de 1 ano
@@ -12506,10 +12506,10 @@ em 5 anos de 13,5% para 13,0% e 12,9%. O B tem a menor cauda.</li>
 (0,80 → 0,85). Alfa: 1,62 → 1,61 e 1,60, com vol menor (13,0% → 12,3%).</li>
 <li><strong>Sozinhos, os <code>*_av</code> do Brasil pioram:</strong> IBOV 0,33 → 0,25, SMLL 0,18 → 0,10, DI de 3 anos −0,15 → −0,26 (drawdown
 −27% → −37%), dólar −0,14 → −0,16. A camada 2 de 1 ano realavanca depois de anos calmos e toma o choque seguinte
-alavancada (é a queda lenta da etapa 5). No fundo isso não aparece, porque o timing e os alocadores olham a mesma vol
+alavancada (é a queda lenta da etapa 4). No fundo isso não aparece, porque o timing e os alocadores olham a mesma vol
 de 1 ano: o timing do Brasil fica com o Sharpe de 0,76 → 0,72 (B) e drawdown menor. Fica registrado como o custo do
 método nos ativos do Brasil.</li>
-<li><strong>Alocadores:</strong> a comparação das janelas está na etapa 6; aqui entra a escolhida.</li>
+<li><strong>Alocadores:</strong> a comparação das janelas está na etapa 5; aqui entra a escolhida.</li>
 <li><strong>Transição:</strong> com o LO do Factors, o retorno de 2026 fica em 7,4%, contra 7,3% da produção; com o LO via IBOV, 8,6%.
 A diferença está toda no LO (5,7% na produção, 7,0% na transição e 14,6% via IBOV). O Sharpe da transição fica em
 1,89 desde 2017 e 1,29 em 5 anos, com a menor cauda das três (drawdown −9,5%).</li>
