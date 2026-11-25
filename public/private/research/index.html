@@ -177,14 +177,20 @@
                 <li>Medindo a vol em 1 a 5 anos, qual controla melhor o risco?</li>
                 <li>Debaixo do alvo, o modelo A ou o B? E homocedasticizar antes é melhor do que o alvo direto no ativo?</li>
               </ul></details></li>
-            <li><details class="pq"><summary><a href="/research/fundo-vol-2026-11">O Ajuste de Vol no Fundo</a></summary>
+            <li><details class="pq"><summary><a href="/research/alocadores-2026-11">Alocadores: Responsividade e Estabilidade</a></summary>
               <ul class="perg">
-                <li>Como fica o Essencial hoje, com o modelo A e com o modelo B, nos parâmetros escolhidos?</li>
-                <li>Qual janela de alavancagem nos alocadores, olhando a cauda e o giro do LS?</li>
+                <li>Com que janela medir a vol da mistura nos alocadores, de 3 meses a 5 anos?</li>
+                <li>A janela curta pega a quebra de correlação (Covid, juros em 2022); a longa é estável. Usar a menor alavancagem das duas junta as duas coisas?</li>
+                <li>Quanto cada janela mexe no peso do LS?</li>
+              </ul></details></li>
+            <li><details class="pq"><summary><a href="/research/fundo-vol-2026-11">Consequência sobre Alocação de Portfólio</a></summary>
+              <ul class="perg">
+                <li>Juntando tudo (LO via IBOV, homocedasticização, vol scaling e alocadores), como fica o Essencial, com o modelo A e com o B?</li>
+                <li>Quais os impactos em cada bloco do fundo?</li>
                 <li>Dá para migrar sem descolar a cota do ano?</li>
               </ul></details></li>
           </ol>
-          <div class="acomp"><ol class="pesq" start="7">
+          <div class="acomp"><ol class="pesq" start="8">
             <li><details class="pq"><summary><a href="/research/ajuste-vol">Monitoramento Live</a></summary>
               <ul class="perg">
                 <li>produção (com o hedge de consenso)</li>
@@ -197,8 +203,8 @@
           <details class="raz dec-first" open><summary class="dec-h">Decisão</summary>
           <p class="dec-lead">Ajuste de vol em duas camadas em todos os <code>*_av</code>:</p>
           <ul class="dec">
-            <li>freio: <b>modelo B</b> (21 dias, histórico de 5 anos, percentil 80)</li>
-            <li>alvo: <b>12% pela vol de 1 ano</b> da série freada</li>
+            <li>homocedasticização: <b>modelo B</b> (21 dias, histórico de 5 anos, percentil 80)</li>
+            <li>vol scaling: <b>12% pela vol de 1 ano</b> da série homocedástica</li>
             <li>alocadores pela <b>menor alavancagem entre 1 e 5 anos</b></li>
             <li>LO via futuro de IBOV <b>numa segunda etapa</b></li>
           </ul></details>
@@ -219,10 +225,10 @@
         <td>
           <details class="tl"><summary>
           <ul class="plano">
-            <li class="done"><b>18/11/26</b> etapa 1: LO vol scaling via IBOV/SMLL</li>
-            <li class="done"><b>19/11/26</b> etapa 2: simples x EWM</li>
-            <li class="done"><b>23/11/26</b> etapas 3 e 4: freio e alvo</li>
-            <li class="done"><b>24/11/26</b> etapa 5 e decisão; início do monitoramento</li>
+            <li class="done"><b>18/11/26</b> etapas 1 e 2: fundamentos (separados em 24/11) e LO vol scaling via IBOV/SMLL</li>
+            <li class="done"><b>19/11/26</b> etapa 3: simples x EWM</li>
+            <li class="done"><b>23/11/26</b> etapas 4 e 5: homocedasticização e vol scaling (refeitas em 24/11)</li>
+            <li class="done"><b>24/11/26</b> etapas 6 e 7 (alocadores e consequência no portfólio) e decisão; início do monitoramento</li>
             <li class="done"><b>24/11/26</b> transição em produção (todos os <code>*_av</code>, LO do Factors)</li>
             <li class="next"><b>a definir</b> LO via futuro de IBOV (só troca a entrada do LO; passo a passo no README da pesquisa)
               <ol class="todo">
