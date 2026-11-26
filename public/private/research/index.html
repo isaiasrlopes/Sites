@@ -152,7 +152,7 @@
                 <li>A vol se prevê e o retorno não?</li>
                 <li>Como são as distribuições do retorno e da vol, e o que vem depois de um mês ou de um ano extremo?</li>
               </ul></details></li>
-            <li><details class="pq"><summary><a href="/research/freio-2026-11">Camada 1: Homocedastização</a></summary>
+            <li><details class="pq"><summary><a href="/research/homoscedastizacao-2026-11">Camada 1: Homocedastização</a></summary>
               <ul class="perg">
                 <li>Antes de escalar a vol, dá para tornar a série homocedástica comparando o ativo com a própria história?</li>
                 <li>Modelo A (vol longa ÷ vol de 1 mês, limitado a 1) e modelo B (liga acima do percentil 80, mira a mediana): quanto histórico, de 1 a 5 anos?</li>
@@ -212,7 +212,7 @@
             <li><b>Futuro em vez das ações:</b> desde 2005, o Sharpe do LO com ajuste semanal é 0,75; com o futuro de IBOV, 0,74, e com o SMLL, 0,78, contra 0,63 do LO 100, com drawdown parecido (−25,2%, −27,3% e −25,5%, contra −44,4%). As ações ficam intactas.</li>
             <li><b>Estimador e fonte da vol:</b> medir pela carteira de ações ou pela cota empata. Nas três camadas, o EWM deixa a vol só um pouco mais estável (oscilação da vol de 21 dias do Essencial de 0,29 para 0,28 desde 2017; desde 2008, de 0,28 para 0,29), com a mesma cauda e o mesmo Sharpe (1,91 contra 1,93 desde 2017, 1,84 contra 1,82 desde 2008), mas gira cerca de 40% mais nos ativos e mexe mais no LS (maior salto num dia de 8,6 para 11,5 p.p.). Fica a vol simples.</li>
             <li><b>Duas camadas:</b> o problema é a heterocedasticidade. Um alvo fixo direto na série corta tarde e realavanca rápido; primeiro o freio (o ativo contra a própria vol) deixa a série homocedástica, e só então o alvo a coloca na régua comum.</li>
-            <li><b>Por que o B:</b> nos cinco ativos é o freio mais homocedástico (variação da vol de 21 dias de 0,56 a 0,66 da do ativo, contra 0,61 a 0,69 do A de 5 anos) e o que mais corta as surpresas (Covid: pico de 2,0 a 3,0 vezes a vol de 3 anos, contra 6 a 8 no ativo), com giro baixo (1,1 a 1,4 vez o PL por ano). No A, o histórico de 5 anos é o melhor.</li>
+            <li><b>Por que o B:</b> nos cinco ativos é o freio mais homocedástico: nos piores 5% dos dias, a vol de 21 dias fica em média 1,95 a 2,18 vezes a mediana dela com o B de 5 anos, contra 2,00 a 2,25 com o A de 5 anos e 2,71 a 3,40 no ativo; com o mesmo histórico, o B fica abaixo do A nas 25 combinações de ativo e histórico. O giro é baixo (1,1 a 1,4 vez o PL por ano). No A, o histórico de 5 anos é o melhor.</li>
             <li><b>No fundo:</b> mesmo Sharpe da produção (1,91 contra 1,93 desde 2017; 1,34 contra 1,35 em 5 anos), com menos risco: drawdown de −9,8% contra −10,5% e pico de vol de 1 ano de 12,9% contra 13,5% em 5 anos. O beta melhora (1,23 → 1,27) pelo equity e pelo beta global; o alfa empata.</li>
             <li><b>Alocadores:</b> a menor alavancagem entre 1 e 5 anos tem o Sharpe da de 1 ano com menos cauda e mexe menos no LS (peso entre 0,55 e 0,76, giro de 0,36 vez por ano, no máximo 8,6 p.p. num dia). As janelas curtas têm Sharpe igual ou maior, mas mexem demais no LS (saltos de 17 a 34 p.p. num dia).</li>
             <li><b>Régua:</b> o hedge do dólar no timing do Brasil por consenso extremo conta como já adotado nas três cotas, para a comparação medir só o ajuste de vol.</li>
