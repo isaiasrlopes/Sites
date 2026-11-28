@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decisões por Camada</title>
+<link rel="icon" href="/static/image/vokin_mark.svg" type="image/svg+xml">
+<style>
+  :root { --ink: #3d3d3b; --muted: #6b6b68; --line: #e4e4e0; --accent: #aa002d; --bg: #f5f5f3; --card: #ffffff;
+          --done: #2f7d4a; --next: #aa002d; --todo: #8a8a86; --open-bg: #f4e5e3; --done-bg: #e5ede7; --wait-bg: #efefec; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; line-height: 1.55; }
+  main { max-width: 1100px; margin: 40px auto; padding: 32px 40px; background: var(--card); border-radius: 12px;
+         box-shadow: 0 0 20px rgba(0, 0, 0, 0.06); }
+  h1 { margin: 0 0 4px; font-size: 26px; }
+  .sub { margin: 0 0 24px; color: var(--muted); font-size: 14px; max-width: 70ch; }
+  .prod { margin: 0 0 28px; padding: 12px 16px; background: var(--wait-bg); border-radius: 8px; font-size: 14px; }
+  .prod b { white-space: nowrap; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; font-weight: 600; color: var(--muted); border-bottom: 2px solid var(--line); padding: 8px 10px; }
+  td { vertical-align: top; border-bottom: 1px solid var(--line); padding: 14px 10px; }
+  col.c-cam { width: 15%; } col.c-dec { width: 27%; } col.c-num { width: 34%; } col.c-ab { width: 24%; }
+  td.cam { font-weight: 600; }
+  td.cam span { display: block; font-weight: 400; color: var(--muted); font-size: 12px; margin-top: 2px; }
+  .st { display: inline-block; margin-top: 6px; padding: 1px 8px; border-radius: 10px; font-size: 11px; font-weight: 700;
+        letter-spacing: .04em; text-transform: uppercase; }
+  .st.fechada { background: var(--done-bg); }
+  .st.aberta { background: var(--open-bg); }
+  .st.adiada { background: var(--wait-bg); }
+  ul { margin: 0; padding-left: 18px; }
+  li { margin-bottom: 4px; }
+  table.mini { width: auto; margin: 6px 0 4px; font-size: 12px; }
+  table.mini th, table.mini td { padding: 2px 8px; border-bottom: 1px solid var(--line); text-align: right; }
+  table.mini th:first-child, table.mini td:first-child { text-align: left; }
+  table.mini tr.esc td { font-weight: 700; }
+  .nota { color: var(--muted); font-size: 12px; }
+  a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .legenda { margin-top: 18px; color: var(--muted); font-size: 12px; }
+  @media (max-width: 760px) {
+    main { margin: 0; padding: 20px 16px; border-radius: 0; }
+    table:not(.mini), table:not(.mini) thead, table:not(.mini) tbody, table:not(.mini) tr,
+    table:not(.mini) > tbody > tr > td { display: block; }
+    table:not(.mini) thead { display: none; }
+    table:not(.mini) > tbody > tr { border-bottom: 2px solid var(--line); padding: 8px 0; }
+    table:not(.mini) > tbody > tr > td { border: 0; padding: 6px 0; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Decisões por Camada</h1>
+  <p class="sub">Managed Volatility do Essencial: uma linha por camada, com o que foi escolhido, contra o quê, o número que decidiu e o que está em aberto. Os detalhes ficam nos relatórios de cada camada. Estado em 27/11/2026; números com cota até 26/11/2026, desde 07/2017.</p>
+
+  <p class="prod"><b>Em produção desde 24/11/2026:</b> a transição. Modelo B e 12% pela vol de 1 ano em todos os <code>*_av</code>, alocadores pela menor alavancagem entre 1 e 5 anos, LO do Factors, 0,66 × beta + 0,66 × alfa fixos. A camada 4 está escolhida no estudo e ainda não está em produção.</p>
+
+  <table>
+    <colgroup><col class="c-cam"><col class="c-dec"><col class="c-num"><col class="c-ab"></colgroup>
+    <thead><tr><th>Camada</th><th>Escolha</th><th>Contra o quê, e o número</th><th>Em aberto</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="cam"><a href="/research/homoscedastizacao-2026-11">1. Homocedastização</a><span>o ativo contra a própria vol</span><span class="st fechada">fechada</span></td>
+        <td><b>Modelo B</b>: vol de 21 dias, histórico de 5 anos, liga acima do p80, mira a mediana, banda de 10%. Vol simples.
+          <p class="nota">O LO não passa por ela: vem do Factors com o ajuste de lá (alvo de 21%, 21 dias, teto de 100%).</p></td>
+        <td><ul>
+          <li><b>B × A:</b> nos piores 5% dos dias, a vol de 21 dias fica 1,95 a 2,18 vezes a mediana com o B de 5 anos, contra 2,00 a 2,25 com o A e 2,71 a 3,40 no ativo cru. O B ganha nas 25 combinações de ativo e histórico.</li>
+          <li><b>Giro:</b> 1,1 a 1,4 vez o PL por ano.</li>
+          <li><b>Simples × EWM:</b> mesma cauda e mesmo Sharpe, com cerca de 40% mais giro no EWM. Fica a simples.</li>
+        </ul></td>
+        <td>A mesma regra dentro do Factors, nos LOs (<a href="/research/camadas-factors-2026-11">Camadas em Factors</a>): no <code>lo_timing</code>, cauda de 2,26 contra 2,41 e Sharpe de 0,75 contra 0,67 desde 2008. O teste no fundo está em <a href="#lo">LO nas camadas</a>.</td>
+      </tr>
+      <tr>
+        <td class="cam"><a href="/research/camada2-2026-11">2. Volatility Scaling</a><span>a série homocedástica na régua comum</span><span class="st aberta">aberta</span></td>
+        <td><b>12% pela vol de 1 ano</b>, como está em produção, até a janela ser decidida.</td>
+        <td>3 e 5 anos testados em toda a grade da camada 3. Com o alocador mín(1a, 5a):
+          <table class="mini">
+            <thead><tr><th>camada 2</th><th>Sharpe</th><th>cauda</th><th>DD (%)</th><th>YTD (%)</th><th>peso do LO hoje (%)</th><th>LO líquido hoje (%)</th></tr></thead>
+            <tbody>
+              <tr><td>produção</td><td>1,91</td><td>1,80</td><td>−10,4</td><td>9,04</td><td>9,1</td><td>6,7</td></tr>
+              <tr class="esc"><td>1 ano (transição)</td><td>1,88</td><td>1,81</td><td>−9,3</td><td>8,96</td><td>6,6</td><td>4,9</td></tr>
+              <tr><td>3 anos</td><td>1,87</td><td>1,86</td><td>−9,9</td><td>8,55</td><td>9,3</td><td>6,9</td></tr>
+              <tr><td>5 anos</td><td>1,85</td><td>1,90</td><td>−10,2</td><td>8,30</td><td>11,1</td><td>8,2</td></tr>
+            </tbody>
+          </table>
+          <p class="nota">LO líquido = peso do LO × quanto ele está comprado em ações por dentro (no Factors, 73,8% hoje, contra 49,2% ontem). A janela longa solta o LO mais rápido depois de um choque, mas piora a cauda do fundo inteiro.</p></td>
+        <td><b>A janela.</b> O único ganho de 3 e 5 anos é no LO, que fica preso depois de um choque; a cauda do fundo piora. A janela depende de como o LO entra (<a href="#lo">LO nas camadas</a>), e deve ser revista junto com ele.</td>
+      </tr>
+      <tr>
+        <td class="cam"><a href="/research/alocadores-2026-11">3. Alocação de Portfólio</a><span>a janela da vol da mistura</span><span class="st fechada">fechada</span></td>
+        <td><b>A menor alavancagem entre 1 e 5 anos</b>.</td>
+        <td><ul>
+          <li>O Sharpe da janela de 1 ano, com menos cauda.</li>
+          <li><b>LS estável:</b> peso entre 0,55 e 0,76, giro de 0,36 vez por ano, no máximo 8,6 p.p. num dia. As janelas curtas têm Sharpe igual ou maior, mas saltam 17 a 34 p.p. num dia.</li>
+        </ul></td>
+        <td>Nada.</td>
+      </tr>
+      <tr>
+        <td class="cam"><a href="/research/camada4-2026-11">4. Nível do Fundo</a><span>o Essencial no alvo de 12%</span><span class="st fechada">fechada no estudo</span></td>
+        <td><b>Alvo de 12% medido na carteira estratégica</b> (beta global + alfa, sem viés comprado e sem timing), 3 anos, mensal, sem banda, aplicado ao Essencial real.</td>
+        <td><ul>
+          <li>Com os 0,66 fixos, a transição roda a 11,1% nos últimos 5 anos; com a camada, 11,75%.</li>
+          <li><b>Custo:</b> cauda de 1,82 contra 1,79, giro do LS de 0,43 contra 0,36 por ano. Sharpe igual (0,01 a 0,02 em qualquer janela do alocador).</li>
+          <li>Medir no próprio fundo desfaz o timing; a banda é complexidade a mais nesta etapa.</li>
+        </ul></td>
+        <td>Quando vai para produção.</td>
+      </tr>
+      <tr id="lo">
+        <td class="cam">LO nas camadas<span>de onde vem o LO que entra no fundo</span><span class="st adiada">adiada</span></td>
+        <td><b>O LO do Factors</b> (<code>lo_timing new</code>), como está.</td>
+        <td><ul>
+          <li><b>LO via IBOV:</b> descartado em 26/11. O hedge com o índice tira a seleção do LO, que anda com o LS quando o freio corta (<a href="/research/alocadores-2026-11#lo_ibov">Camada 3</a>).</li>
+          <li><b>LO 100 pelas camadas do portfólio:</b> ganha em tudo (Sharpe +0,03 a +0,05, YTD cerca de +1,5 p.p.), mas o ano fica longe do fundo de hoje; não migra agora (27/11, <a href="/research/alocadores-2026-11#lo100">Camada 3</a>).</li>
+          <li><b>LO com a camada 1 feita no estilo do Factors</b> (carteira × cota 5a), só com a camada 2 no portfólio: Sharpe de 1,90 contra 1,88 da transição e 1,91 da produção, cauda igual (1,80), YTD de 10,29% contra 8,96% da transição e 9,04% da produção ; LO líquido hoje de 3,1%, contra 4,9% da transição (camada 2 de 1 ano; resultado de 27/11, sem leitura).</li>
+        </ul></td>
+        <td>A camada 1 nos LOs <b>dentro do Factors</b>, para ter a base de comparação. Depois, a janela da camada 2 com o LO já no formato novo.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="legenda">Fechada: decidida e sem teste pendente. Aberta: testada, sem decisão. Adiada: decidida a não mudar agora, com um estudo antes.</p>
+</main>
+</body>
+</html>
